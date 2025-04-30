@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Poppins", sans-serif;
+}
+
+.font-satisfy {
+  font-family: "Satisfy", sans-serif;
+}
+
+.text-title-primary {
+  color: #b5bac2;
+}
+
+.text-title-secondary {
+  color: #ec5858;
+}
+
+.bg-maps {
+  background: url("/assets/images/maps.png");
+  background-size: 80%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+/* Stop the animation when the container is hovered */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}

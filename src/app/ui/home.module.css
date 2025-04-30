@@ -1,0 +1,430 @@
+.cover1 {
+  background-image: url("https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/183/2024/08/27/63fdb9789cf09-175183370.jpg");
+  background-size: cover;
+  background-position: center;
+  animation: animationCover1 30s infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  width: 18%;
+}
+
+@keyframes animationCover1 {
+  25% {
+    background-image: url("https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/183/2024/08/27/63fdb9789cf09-175183370.jpg");
+  }
+  30% {
+    background-image: url("https://www.yukbanyuwangi.co.id/wp-content/uploads/2023/12/DJI_0126_1200.jpg");
+  }
+  55% {
+    background-image: url("https://www.yukbanyuwangi.co.id/wp-content/uploads/2023/12/DJI_0126_1200.jpg");
+  }
+  60% {
+    background-image: url("https://img.okezone.com/content/2020/10/23/408/2298618/fakta-fakta-menarik-taman-nasional-baluran-afrikanya-indonesia-KymfZeNePX.jpg");
+  }
+  95% {
+    background-image: url("https://img.okezone.com/content/2020/10/23/408/2298618/fakta-fakta-menarik-taman-nasional-baluran-afrikanya-indonesia-KymfZeNePX.jpg");
+  }
+  100% {
+    background-image: url("https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/183/2024/08/27/63fdb9789cf09-175183370.jpg");
+  }
+}
+
+.cover2 {
+  background-image: url("https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/97/b7/6f/tumpak-sewu-waterfalls.jpg?w=1200&h=1200&s=1");
+  background-size: cover;
+  background-position: center;
+  animation: animationCover2 20s infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  border-radius: 8px;
+  width: 17%;
+}
+
+@keyframes animationCover2 {
+  25% {
+    background-image: url("https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/97/b7/6f/tumpak-sewu-waterfalls.jpg?w=1200&h=1200&s=1");
+  }
+  30% {
+    background-image: url("https://cozzy.id/uploads/0000/630/2024/09/25/penginapan-murah-malang-hotel-murah-cozzyid.jpg");
+  }
+  55% {
+    background-image: url("https://cozzy.id/uploads/0000/630/2024/09/25/penginapan-murah-malang-hotel-murah-cozzyid.jpg");
+  }
+  60% {
+    background-image: url("https://i.ytimg.com/vi/xl4iTWvWUPA/maxresdefault.jpg");
+  }
+  95% {
+    background-image: url("https://i.ytimg.com/vi/xl4iTWvWUPA/maxresdefault.jpg");
+  }
+  100% {
+    background-image: url("https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/97/b7/6f/tumpak-sewu-waterfalls.jpg?w=1200&h=1200&s=1");
+  }
+}
+
+.cover3 {
+  background-image: url("https://wonderfulimage.s3-id-jkt-1.kilatstorage.id/1692600212-dscf5151-jpg-medium.jpg");
+  background-size: cover;
+  background-position: center;
+  animation: animationCover3 25s infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  width: 27%;
+}
+
+@keyframes animationCover3 {
+  25% {
+    background-image: url("https://wonderfulimage.s3-id-jkt-1.kilatstorage.id/1692600212-dscf5151-jpg-medium.jpg");
+  }
+  30% {
+    background-image: url("https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/01/26/1651611138.jpg");
+  }
+  55% {
+    background-image: url("https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/01/26/1651611138.jpg");
+  }
+  60% {
+    background-image: url("https://rainbowrentcar.com/wp-content/uploads/2023/06/Menikmati-Keindahan-Pantai-Papuma-Surga-Tersembunyi-di-Jember-jpg.webp");
+  }
+  95% {
+    background-image: url("https://rainbowrentcar.com/wp-content/uploads/2023/06/Menikmati-Keindahan-Pantai-Papuma-Surga-Tersembunyi-di-Jember-jpg.webp");
+  }
+  100% {
+    background-image: url("https://wonderfulimage.s3-id-jkt-1.kilatstorage.id/1692600212-dscf5151-jpg-medium.jpg");
+  }
+}
+
+.cover4 {
+  background-image: url("https://www.eastjava.com/tourism/sumenep/images/gili_labak.jpg");
+  background-size: cover;
+  background-position: center;
+  animation: animationCover4 15s infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  width: 15%;
+}
+
+@keyframes animationCover4 {
+  25% {
+    background-image: url("https://www.eastjava.com/tourism/sumenep/images/gili_labak.jpg");
+  }
+  30% {
+    background-image: url("https://i0.wp.com/melihatindonesia.id/wp-content/uploads/2022/11/sarangan.jpg?fit=722%2C722&quality=89&ssl=1");
+  }
+  55% {
+    background-image: url("https://i0.wp.com/melihatindonesia.id/wp-content/uploads/2022/11/sarangan.jpg?fit=722%2C722&quality=89&ssl=1");
+  }
+  60% {
+    background-image: url("https://bobobox.com/blog/wp-content//uploads/2024/08/Museum-Angkut-Malang-10-jpg.webp");
+  }
+  95% {
+    background-image: url("https://bobobox.com/blog/wp-content//uploads/2024/08/Museum-Angkut-Malang-10-jpg.webp");
+  }
+  100% {
+    background-image: url("https://www.eastjava.com/tourism/sumenep/images/gili_labak.jpg");
+  }
+}
+
+.cover5 {
+  background-image: url("https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/74/2024/03/27/Pantai-Balekambang-1601454064.png");
+  background-size: cover;
+  background-position: center;
+  animation: animationCover5 35s infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  border-radius: 8px;
+  width: 23%;
+}
+
+@keyframes animationCover5 {
+  25% {
+    background-image: url("https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/74/2024/03/27/Pantai-Balekambang-1601454064.png");
+  }
+  30% {
+    background-image: url("https://cdn1-production-images-kly.akamaized.net/AhTPoHLWhaR63A8XIYewjYeFj_0=/1200x1200/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/3401630/original/086238900_1615797684-img-konten_1576115177.jpeg");
+  }
+  55% {
+    background-image: url("https://cdn1-production-images-kly.akamaized.net/AhTPoHLWhaR63A8XIYewjYeFj_0=/1200x1200/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/3401630/original/086238900_1615797684-img-konten_1576115177.jpeg");
+  }
+  60% {
+    background-image: url("https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/232/2024/04/07/alun2-new-4226384803.jpg");
+  }
+  95% {
+    background-image: url("https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/232/2024/04/07/alun2-new-4226384803.jpg");
+  }
+  100% {
+    background-image: url("https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/74/2024/03/27/Pantai-Balekambang-1601454064.png");
+  }
+}
+
+.coverTitle1:after {
+  content: "";
+  animation: animationCoverTitle1 30s infinite;
+}
+
+@keyframes animationCoverTitle1 {
+  0% {
+    content: "Gunung Bromo";
+    opacity: 1;
+  }
+  25% {
+    content: "Gunung Bromo";
+    opacity: 1;
+  }
+  27% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 0;
+  }
+  30% {
+    content: "Kawah Ijen";
+    opacity: 1;
+  }
+  55% {
+    content: "Kawah Ijen";
+    opacity: 1;
+  }
+  57% {
+    opacity: 0;
+  }
+  58% {
+    opacity: 0;
+  }
+  60% {
+    content: "Taman Nasional Baluran";
+    opacity: 1;
+  }
+  95% {
+    content: "Taman Nasional Baluran";
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  98% {
+    opacity: 0;
+  }
+  100% {
+    content: "Gunung Bromo";
+    opacity: 1;
+  }
+}
+
+.coverTitle2:after {
+  content: "";
+  animation: animationCoverTitle2 20s infinite;
+}
+
+@keyframes animationCoverTitle2 {
+  0% {
+    content: "Air Terjun Tumpak Sewu";
+    opacity: 1;
+  }
+  25% {
+    content: "Air Terjun Tumpak Sewu";
+    opacity: 1;
+  }
+  27% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 0;
+  }
+  30% {
+    content: "Pantai Tiga Warna";
+    opacity: 1;
+  }
+  55% {
+    content: "Pantai Tiga Warna";
+    opacity: 1;
+  }
+  57% {
+    opacity: 0;
+  }
+  58% {
+    opacity: 0;
+  }
+  60% {
+    content: "Batu Night Spectacular";
+    opacity: 1;
+  }
+  95% {
+    content: "Batu Night Spectacular";
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  98% {
+    opacity: 0;
+  }
+  100% {
+    content: "Air Terjun Tumpak Sewu";
+    opacity: 1;
+  }
+}
+
+.coverTitle3:after {
+  content: "";
+  animation: animationCoverTitle3 25s infinite;
+}
+
+@keyframes animationCoverTitle3 {
+  0% {
+    content: "Jatim Park";
+    opacity: 1;
+  }
+  25% {
+    content: "Jatim Park";
+    opacity: 1;
+  }
+  27% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 0;
+  }
+  30% {
+    content: "Pulau Sempu";
+    opacity: 1;
+  }
+  55% {
+    content: "Pulau Sempu";
+    opacity: 1;
+  }
+  57% {
+    opacity: 0;
+  }
+  58% {
+    opacity: 0;
+  }
+  60% {
+    content: "Pantai Papuma";
+    opacity: 1;
+  }
+  95% {
+    content: "Pantai Papuma";
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  98% {
+    opacity: 0;
+  }
+  100% {
+    content: "Jatim Park";
+    opacity: 1;
+  }
+}
+
+.coverTitle4:after {
+  content: "";
+  animation: animationCoverTitle4 15s infinite;
+}
+
+@keyframes animationCoverTitle4 {
+  0% {
+    content: "Gili Labak";
+    opacity: 1;
+  }
+  25% {
+    content: "Gili Labak";
+    opacity: 1;
+  }
+  27% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 0;
+  }
+  30% {
+    content: "Telaga Sarangan";
+    opacity: 1;
+  }
+  55% {
+    content: "Telaga Sarangan";
+    opacity: 1;
+  }
+  57% {
+    opacity: 0;
+  }
+  58% {
+    opacity: 0;
+  }
+  60% {
+    content: "Museum Angkut";
+    opacity: 1;
+  }
+  95% {
+    content: "Museum Angkut";
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  98% {
+    opacity: 0;
+  }
+  100% {
+    content: "Gili Labak";
+    opacity: 1;
+  }
+}
+
+.coverTitle5:after {
+  content: "";
+  animation: animationCoverTitle5 35s infinite;
+}
+
+@keyframes animationCoverTitle5 {
+  0% {
+    content: "Pantai Balekambang";
+    opacity: 1;
+  }
+  25% {
+    content: "Pantai Balekambang";
+    opacity: 1;
+  }
+  27% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 0;
+  }
+  30% {
+    content: "Taman Nasional Meru Betiri";
+    opacity: 1;
+  }
+  55% {
+    content: "Taman Nasional Meru Betiri";
+    opacity: 1;
+  }
+  57% {
+    opacity: 0;
+  }
+  58% {
+    opacity: 0;
+  }
+  60% {
+    content: "Alun-Alun Batu";
+    opacity: 1;
+  }
+  95% {
+    content: "Alun-Alun Batu";
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  98% {
+    opacity: 0;
+  }
+  100% {
+    content: "Pantai Balekambang";
+    opacity: 1;
+  }
+}
