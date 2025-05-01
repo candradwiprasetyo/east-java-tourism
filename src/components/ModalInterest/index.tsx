@@ -1,3 +1,5 @@
+import PageDivider from "../Divider";
+
 type ModalInterestProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -37,24 +39,37 @@ const ModalInterest = ({
         onClick={onClose}
       ></div>
       <div
-        className="bg-white p-6 rounded-lg w-96 text-black absolute mx-auto left-0 right-0"
+        className="bg-white p-6 rounded-2xl text-title-primary fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-lg font-bold mb-4">Choose Interest</h2>
-        <div className="grid grid-cols-3 text-sm gap-2 max-h-60 overflow-y-auto">
+        <h2 className="text-lg font-bold mb-8">Choose What Excites You</h2>
+        <div className="grid grid-cols-3 text-sm gap-y-2 gap-x-4 max-h-60 overflow-y-auto">
           {interests.map((interest, index) => (
             <div key={index} className="flex items-center">
-              <input
-                type="checkbox"
-                id={interest}
-                checked={selectedData.includes(interest)}
-                onChange={() => onInterestSelect(interest)}
-              />
+              <div className="w-6">
+                <input
+                  type="checkbox"
+                  id={interest}
+                  checked={selectedData.includes(interest)}
+                  onChange={() => onInterestSelect(interest)}
+                  className="bg-gray-200 hover:bg-gray-300 cursor-pointer 
+      w-5 h-5  focus:outline-none rounded-xl"
+                />
+              </div>
               <label htmlFor={interest} className="ml-2 capitalize">
                 {interest.replace("-", " ")}
               </label>
             </div>
           ))}
+        </div>
+        <button
+          onClick={onClose}
+          className="bg-green-400 text-white p-3 rounded-lg mt-8 block mx-auto"
+        >
+          Pick It
+        </button>
+        <div className="absolute w-full bottom-0 left-0 pointer-events-none">
+          <PageDivider direction="up" background="#edcebb" />
         </div>
       </div>
     </>

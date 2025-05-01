@@ -25,11 +25,11 @@ body {
 }
 
 .text-title-primary {
-  color: #b5bac2;
+  color: #2a5475;
 }
 
 .text-title-secondary {
-  color: #ec5858;
+  color: #eea5a0;
 }
 
 .bg-maps {
@@ -37,6 +37,10 @@ body {
   background-size: 80%;
   background-position: center bottom;
   background-repeat: no-repeat;
+}
+
+.bg-primary {
+  background-color: #fcece2;
 }
 
 @keyframes scroll {
@@ -57,4 +61,16 @@ body {
 /* Stop the animation when the container is hovered */
 .animate-scroll:hover {
   animation-play-state: paused;
+}
+
+.rdp {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.rdp-months {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
 }
