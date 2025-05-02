@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import PageDivider from "../Divider";
 
 const ModalLocation = ({
@@ -14,18 +13,6 @@ const ModalLocation = ({
   selectedCities: string[];
   onCitySelect: (city: string) => void;
 }) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [isOpen]);
-
   if (!isOpen) return null;
 
   const cities = [

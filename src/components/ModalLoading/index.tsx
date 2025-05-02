@@ -8,8 +8,6 @@ const LoadingModal = () => {
   const animationContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.body.classList.add("overflow-hidden");
-
     if (animationContainer.current) {
       const animationInstance = lottie.loadAnimation({
         container: animationContainer.current,
@@ -21,7 +19,6 @@ const LoadingModal = () => {
 
       return () => {
         animationInstance.destroy();
-        document.body.classList.remove("overflow-hidden");
       };
     }
   }, []);
