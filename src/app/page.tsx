@@ -1,5 +1,3 @@
-"use client";
-
 import MainSearch from "@/components/MainSearch";
 import Gallery from "@/components/Gallery";
 import Maps from "@/components/Maps";
