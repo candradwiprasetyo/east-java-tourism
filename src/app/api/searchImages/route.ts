@@ -1,5 +1,12 @@
 import { NextResponse } from "next/server";
 
+interface UnsplashImage {
+  alt_description: string | null;
+  urls: {
+    regular: string;
+  };
+}
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const query = searchParams.get("query");
@@ -32,7 +39,7 @@ export async function GET(req: Request) {
     }
 
     const data = await response.json();
-    const images = data.results.map((img: any) => ({
+    const images = data.results.map((img: UnsplashImage) => ({
       name: img.alt_description || "Unknown",
       imageUrl: img.urls.regular,
     }));

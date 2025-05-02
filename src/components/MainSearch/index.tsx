@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ModalLocation from "@/components/ModalLocation";
 import ModalInterest from "@/components/ModalInterest";
 import ModalCalendar from "@/components/ModalCalendar";
@@ -123,6 +123,7 @@ export default function MainSearch() {
       router.push(`/itinerary/${data.id}`);
     } catch (err) {
       setLoading(false);
+      console.error(err);
       alert("Failed to save itinerary. Please try again.");
     }
   };
@@ -161,7 +162,7 @@ export default function MainSearch() {
           <div className="absolute mx-auto left-0 right-0 h-full flex items-center justify-center">
             <div className="relative w-full pb-[8vh]">
               <div className="text-white  text-[2vw] left-0 right-0 bottom-40 mx-auto text-center">
-                Let's travel &nbsp;
+                Lets travel{" "}
                 <span className="text-[4vw] font-bold font-satisfy">
                   East Java
                 </span>

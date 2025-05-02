@@ -30,10 +30,12 @@ const Event = () => {
         <div className="flex w-max animate-scroll">
           {[...images, ...images].map((src, index) => (
             <div key={index} className="h-64 w-auto flex-shrink-0">
-              <img
+              <Image
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="h-full w-auto object-cover "
+                width={300}
+                height={256}
+                className="h-full w-auto object-cover"
               />
             </div>
           ))}

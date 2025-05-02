@@ -7,7 +7,7 @@ const Gallery = () => {
         <div className="text-[3vw] py-16 text-title-primary ">
           Discover{" "}
           <span className="text-[4vw] font-bold font-satisfy text-title-secondary ">
-            Indonesia's
+            Indonesias
           </span>{" "}
           Iconic Treasures
         </div>

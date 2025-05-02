@@ -1,10 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+
+interface ImageResult {
+  name: string;
+  imageUrl: string;
+}
 
 export default function SearchImage() {
   const [query, setQuery] = useState("");
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<ImageResult[]>([]);
 
   const fetchImages = async () => {
     const res = await fetch(`/api/searchImages?query=${query}`);
@@ -26,9 +32,15 @@ export default function SearchImage() {
       </button>
 
       <div className="grid grid-cols-3 gap-4 mt-4">
-        {images.map((img: any, index) => (
+        {images.map((img, index) => (
           <div key={index}>
-            <img src={img.imageUrl} alt={img.name} className="w-full h-auto" />
+            <Image
+              src={img.imageUrl}
+              alt={img.name}
+              width={400}
+              height={300}
+              className="w-full h-auto"
+            />
             <p>{img.name}</p>
           </div>
         ))}
