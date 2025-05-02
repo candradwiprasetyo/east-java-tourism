@@ -84,14 +84,14 @@ const locations = [
 const Maps = () => {
   return (
     <>
-      <div className="text-[3vw] py-4 text-title-primary text-center">
-        Lets Find{" "}
-        <span className="text-[4vw] font-bold font-satisfy text-title-secondary ">
-          Your
-        </span>{" "}
-        Next Escape
-      </div>
       <div className="w-full h-screen bg-maps relative">
+        <div className="text-[3vw] py-4 text-title-primary text-center">
+          Lets Find{" "}
+          <span className="text-[4vw] font-bold font-satisfy text-title-secondary ">
+            Your
+          </span>{" "}
+          Next Escape
+        </div>
         {locations.map((loc) => (
           <div
             key={loc.id}
