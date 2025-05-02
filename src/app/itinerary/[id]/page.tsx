@@ -85,7 +85,7 @@ function calculateBudgetFromActivities(days: Day[]): Budget {
 }
 
 async function getItinerary(id: string): Promise<Itinerary | null> {
-  const res = await fetch(`http://localhost:3000/api/itinerary?id=${id}`, {
+  const res = await fetch(`/api/itinerary?id=${id}`, {
     cache: "no-store",
   });
 
