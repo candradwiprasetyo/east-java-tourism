@@ -108,7 +108,7 @@ const Maps = () => {
                 location_on
               </i>
             </div>
-            <div className="absolute hidden group-hover:block bg-gray-700 shadow-lg p-5 rounded-xl w-60 w-auto z-10 text-white">
+            <div className="absolute hidden group-hover:block bg-gray-700 shadow-lg p-5 rounded-xl w-[240px] w-auto z-10 text-white">
               <h4 className="font-bold text-sm mb-2">{loc.name}</h4>
               <p className="text-xs text-gray-100">{loc.description}</p>
             </div>
