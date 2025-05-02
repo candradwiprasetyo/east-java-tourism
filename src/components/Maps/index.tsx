@@ -68,7 +68,7 @@ const locations = [
     name: "Gua Akbar Tuban",
     description:
       "Gua besar dengan formasi batu yang diberi cahaya & ceruk khusus untuk berdoa.",
-    top: "27%",
+    top: "29%",
     left: "38%",
   },
   {
@@ -92,27 +92,37 @@ const Maps = () => {
           </span>{" "}
           Next Escape
         </div>
-        {locations.map((loc) => (
-          <div
-            key={loc.id}
-            className="absolute group cursor-pointer"
-            style={{
-              top: loc.top,
-              left: loc.left,
-              transform: "translate(-50%, -100%)",
-            }}
-          >
-            <div className="animate-bounce text-red-600">
-              <i className="material-icons" style={{ fontSize: "42px" }}>
-                location_on
-              </i>
+        {locations.map((loc) => {
+          const randomDelay = `${Math.random() * 2}s`;
+          return (
+            <div
+              key={loc.id}
+              className="absolute group cursor-pointer"
+              style={{
+                top: loc.top,
+                left: loc.left,
+                transform: "translate(-50%, -100%)",
+              }}
+            >
+              <div
+                className="animate-bounce text-red-600"
+                style={{
+                  fontSize: "60px",
+                  animationDelay: randomDelay,
+                  animationDuration: "1.5s", // optional, bisa dikustom
+                }}
+              >
+                <i className="material-icons" style={{ fontSize: "42px" }}>
+                  location_on
+                </i>
+              </div>
+              <div className="absolute hidden group-hover:block bg-gray-700 shadow-lg p-5 rounded-xl w-[240px] z-10 text-white -mt-10">
+                <h4 className="font-bold text-sm mb-2">{loc.name}</h4>
+                <p className="text-xs text-gray-100">{loc.description}</p>
+              </div>
             </div>
-            <div className="absolute hidden group-hover:block bg-gray-700 shadow-lg p-5 rounded-xl w-[240px] z-10 text-white">
-              <h4 className="font-bold text-sm mb-2">{loc.name}</h4>
-              <p className="text-xs text-gray-100">{loc.description}</p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </>
   );
