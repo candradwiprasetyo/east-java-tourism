@@ -4,7 +4,7 @@ const Gallery = () => {
   return (
     <div className="bg-[#FDEDE3]">
       <div className="container mx-auto px-40 pb-20">
-        <div className="text-[3vw] py-16 text-title-primary ">
+        <div className="text-[3vw] py-16 text-title-primary px-10 ">
           Discover{" "}
           <span className="text-[4vw] font-bold font-satisfy text-title-secondary ">
             Indonesias
@@ -24,9 +24,9 @@ const Gallery = () => {
               <div className="absolute w-full h-20 bottom-0 left-0 right-0  bg-gradient-to-t from-[#262f53] to-transparent py-3 px-4 flex items-end ">
                 Gunung Bromo
               </div>
-              <div className="absolute top-3 right-0 bg-[#EC5858] py-1 px-3 text-white rounded-l-full text-sm">
+              {/* <div className="absolute top-3 right-0 bg-[#EC5858] py-1 px-3 text-white rounded-l-full text-sm">
                 5 tours
-              </div>
+              </div> */}
             </div>
             <div className="relative overflow-hidden rounded-lg">
               <Image
@@ -39,9 +39,9 @@ const Gallery = () => {
               <div className="absolute w-full h-20 bottom-0 left-0 right-0  bg-gradient-to-t from-[#262f53] to-transparent py-3 px-4 flex items-end ">
                 Kawah Ijen
               </div>
-              <div className="absolute top-3 right-0 bg-blue-400 py-1 px-3 text-white rounded-l-full text-sm">
+              {/* <div className="absolute top-3 right-0 bg-blue-400 py-1 px-3 text-white rounded-l-full text-sm">
                 5 tours
-              </div>
+              </div> */}
             </div>
             <div className="relative overflow-hidden rounded-lg">
               <Image

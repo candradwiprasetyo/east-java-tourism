@@ -167,9 +167,32 @@ export default function ItineraryPage() {
             <div className="w-1/2">
               <button
                 onClick={backToMainSearch}
-                className="bg-blue-300 float-right px-4 text-white p-4 font-bold rounded-full"
+                className="bg-red-300 float-right px-4 text-white p-4 font-bold rounded-xl text-sm"
               >
                 Back to home
+              </button>
+
+              <button
+                onClick={backToMainSearch}
+                className="bg-green-300 float-right px-4 text-white pt-4 pb-3 font-bold rounded-xl text-sm mr-2"
+              >
+                <i
+                  className="material-icons text-white"
+                  style={{ fontSize: "20px" }}
+                >
+                  download
+                </i>
+              </button>
+              <button
+                onClick={backToMainSearch}
+                className="bg-blue-300 float-right px-4 text-white pt-4 pb-3 font-bold rounded-xl text-sm mr-2"
+              >
+                <i
+                  className="material-icons text-white"
+                  style={{ fontSize: "20px" }}
+                >
+                  share
+                </i>
               </button>
             </div>
           </div>
@@ -282,7 +305,7 @@ export default function ItineraryPage() {
                             </div>
                           </td>
                           <td
-                            valign="top"
+                            valign="middle"
                             align="right"
                             className="text-xl text-title-secondary"
                           >
