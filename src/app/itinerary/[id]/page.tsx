@@ -4,6 +4,7 @@ import { calculateDayDifference } from "@/lib/dateUtils";
 import { format } from "date-fns";
 import { useRouter, useParams } from "next/navigation";
 import PageDivider from "@/components/Divider";
+import Link from "next/link";
 
 interface Itinerary {
   id: number;
@@ -24,6 +25,7 @@ interface Activity {
   activity: string;
   category: string;
   image_url: string;
+  google_maps_url: string;
 }
 
 interface Day {
@@ -243,8 +245,20 @@ export default function ItineraryPage() {
                           <td valign="top" className="py-3">
                             <div>{activity.activity}</div>
                             <div className="flex items-center gap-1 py-1">
+                              <i
+                                className="material-icons text-red-400"
+                                style={{ fontSize: "15px" }}
+                              >
+                                location_on
+                              </i>
                               <span className="text-gray-400">
-                                {activity.address}
+                                <Link
+                                  href={activity.google_maps_url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {activity.address}
+                                </Link>
                               </span>
                             </div>
                             <div className="flex items-center gap-1 text-green-400 font-bold text-xs">

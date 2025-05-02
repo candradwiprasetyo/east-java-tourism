@@ -86,7 +86,8 @@ export async function POST(req: Request) {
               "address": "",
               "category": "",
               "cost": "",
-              "image_url": ""
+              "image_url": "",
+              "google_maps_url": "",
             }
           ]
         }
@@ -102,6 +103,8 @@ export async function POST(req: Request) {
     jika activity adalah accomodation, berikan hotel yang benar-benar valid ada di kota tempat destinasi. Jangan membuat hotel dummy.
     
     Buatkan budget setiap activity seakurat mungkin dengan harga sebenarnya.
+
+    Setiap activity, carikan data google_maps_url yang valid yang bisa dibuka untuk digunakan rute ke lokasi tersebut. Berikan itinerary dengan lokasi yang menyertakan URL Google Maps yang langsung menuju tempat tersebut (bukan shortened link atau embed), cukup berupa https://www.google.com/maps?q=Nama+Tempat atau https://www.google.com/maps/place/Nama+Tempat, agar bisa dibuka dengan mudah.
 
     Buatkan budget setiap hotel seakurat mungkin dengan harga standart dari hotel tersebut.
 
