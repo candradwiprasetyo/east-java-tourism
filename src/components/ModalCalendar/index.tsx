@@ -1,7 +1,12 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import { DayPicker, DateRange } from "react-day-picker";
 import PageDivider from "../Divider";
 import "react-day-picker/dist/style.css";
+import useHoliday from "@/hooks/useHoliday";
+import { id } from "date-fns/locale";
+import { format } from "date-fns";
 
 type ModalCalendarProps = {
   isOpen: boolean;
@@ -15,6 +20,17 @@ const ModalCalendar = ({
   onCalendarSelect,
 }: ModalCalendarProps) => {
   const [range, setRange] = useState<DateRange | undefined>();
+  const [month, setMonth] = useState<Date>(new Date());
+
+  const { holidays } = useHoliday();
+  const [holidayDates, setHolidayDates] = useState<Date[]>([]);
+
+  useEffect(() => {
+    if (holidays.length > 0) {
+      const parsedDates = holidays.map((holiday) => new Date(holiday.tanggal));
+      setHolidayDates(parsedDates);
+    }
+  }, [holidays]);
 
   const handleSelect = (selected: DateRange | undefined) => {
     setRange(selected);
@@ -22,6 +38,15 @@ const ModalCalendar = ({
   };
 
   if (!isOpen) return null;
+
+  // Filter libur untuk bulan yang sedang ditampilkan
+  const holidaysInCurrentMonth = holidays.filter((holiday) => {
+    const date = new Date(holiday.tanggal);
+    return (
+      date.getMonth() === month.getMonth() &&
+      date.getFullYear() === month.getFullYear()
+    );
+  });
 
   return (
     <>
@@ -42,16 +67,39 @@ const ModalCalendar = ({
             numberOfMonths={2}
             defaultMonth={range?.from}
             showOutsideDays
+            locale={id}
             className="mx-auto flex justify-center gap-4"
+            modifiers={{ holiday: holidayDates }}
+            modifiersClassNames={{
+              holiday: "bg-red-300 rounded-lg",
+            }}
+            onMonthChange={(newMonth) => setMonth(newMonth)}
           />
         </div>
 
+        {holidaysInCurrentMonth.length > 0 && (
+          <div className="mt-16">
+            <h3 className="text-md font-semibold mb-2 text-red-600">
+              Holiday:
+            </h3>
+            <ul className="text-xs list-disc pl-5 text-gray-800">
+              {holidaysInCurrentMonth.map((holiday, index) => (
+                <li key={index}>
+                  {format(new Date(holiday.tanggal), "dd MMMM", { locale: id })}{" "}
+                  – {holiday.keterangan}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <button
           onClick={onClose}
-          className="bg-green-400 text-white p-3 rounded-lg mt-12 block mx-auto"
+          className="bg-green-400 text-white p-3 rounded-lg mt-8 block mx-auto"
         >
           Pick It
         </button>
+
         <div className="absolute w-full bottom-0 left-0 pointer-events-none">
           <PageDivider direction="up" background="#edcebb" />
         </div>

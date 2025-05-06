@@ -4,6 +4,7 @@ import Maps from "@/components/Maps";
 import Event from "@/components/Event";
 import Footer from "@/components/Footer";
 import PageDivider from "@/components/Divider";
+import Holiday from "@/components/Holiday";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <PageDivider direction="up" />
       <Gallery />
       <PageDivider />
+      <Holiday />
       <Event />
       <Footer />
       <PageDivider direction="up" />

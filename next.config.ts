@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       "www.eastjava.com",
       "i0.wp.com",
       "bobobox.com",
+      "images.unsplash.com",
     ],
   },
 };
