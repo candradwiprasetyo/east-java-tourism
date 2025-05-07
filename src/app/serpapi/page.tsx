@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type ImageResult = {
   thumbnail: string;
@@ -33,7 +34,7 @@ export default function SerpApiPage() {
         setError("Gambar tidak ditemukan.");
       }
     } catch (err) {
-      setError("Terjadi kesalahan saat mengambil data.");
+      setError(`Terjadi kesalahan saat mengambil data. ${err}`);
     } finally {
       setLoading(false);
     }
@@ -67,10 +68,12 @@ export default function SerpApiPage() {
 
       {image && (
         <div className="mt-6 flex justify-center">
-          <img
+          <Image
             src={image.thumbnail}
             alt={image.title}
             className="rounded-lg max-w-xs border shadow-md"
+            width={500}
+            height={500}
           />
         </div>
       )}

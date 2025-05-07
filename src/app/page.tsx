@@ -14,8 +14,9 @@ export default function Home() {
       <Maps />
       <PageDivider direction="up" />
       <Gallery />
-      <PageDivider />
+
       <Holiday />
+      <PageDivider />
       <Event />
       <Footer />
       <PageDivider direction="up" />

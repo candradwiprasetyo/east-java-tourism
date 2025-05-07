@@ -6,7 +6,6 @@ import { useState } from "react";
 import ModalLocation from "@/components/ModalLocation";
 import ModalInterest from "@/components/ModalInterest";
 import ModalCalendar from "@/components/ModalCalendar";
-import ModalBudget from "@/components/ModalBudget";
 import ModalLoading from "@/components/ModalLoading";
 import { DateRange } from "react-day-picker";
 import { useRouter } from "next/navigation";
@@ -27,8 +26,6 @@ export default function MainSearch() {
   const [selectedDate, setSelectedDate] = useState<DateRange | undefined>(
     undefined
   );
-  const [isModalBudgetOpen, setIsModalBudgetOpen] = useState<boolean>(false);
-  const [selectedBudget, setSelectedBudget] = useState<string>("2000000");
   const [loading, setLoading] = useState<boolean>(false);
   const userCity = useLocation();
 
@@ -44,10 +41,6 @@ export default function MainSearch() {
 
   const toggleModalCalendar = () => {
     setIsModalCalendarOpen(!isModalCalendarOpen);
-  };
-
-  const toggleModalBudget = () => {
-    setIsModalBudgetOpen(!isModalBudgetOpen);
   };
 
   const handleCitySelection = (city: string) => {
@@ -70,10 +63,6 @@ export default function MainSearch() {
     setSelectedDate(range);
   };
 
-  const handleBudgetSelection = (budget: string) => {
-    setSelectedBudget(budget);
-  };
-
   const handleExplore = async () => {
     if (!selectedDate?.from || !selectedDate?.to) {
       alert("Please select a date range");
@@ -89,7 +78,6 @@ export default function MainSearch() {
       start_date: selectedDate.from.toISOString(),
       end_date: selectedDate.to.toISOString(),
       itinerary_data: {},
-      max_budget: selectedBudget,
     };
 
     try {
@@ -153,7 +141,7 @@ export default function MainSearch() {
               <div className="absolute inset-0 bg-black opacity-60"></div>
               <div
                 className={clsx(
-                  "text-white absolute right-[12%] bottom-[5%] text-[0.7vw]",
+                  "text-white absolute bottom-[5%] text-[0.8vw] w-full text-center font-bold",
                   cover.classCoverTitle
                 )}
               ></div>
@@ -162,8 +150,8 @@ export default function MainSearch() {
           <div className="absolute mx-auto left-0 right-0 h-full flex items-center justify-center">
             <div className="relative w-full pb-[8vh]">
               <div className="text-white  text-[2vw] left-0 right-0 bottom-40 mx-auto text-center">
-                Lets travel{" "}
-                <span className="text-[4vw] font-bold font-satisfy">
+                Discover the Wonders of{"  "}
+                <span className="text-[4vw] font-bold font-satisfy text-[#f0f08d]">
                   East Java
                 </span>
               </div>
@@ -241,42 +229,14 @@ export default function MainSearch() {
                     </div>
                   </div>
                 </div>
-                <div
-                  className="absolute right-[1vw] top-[1vw] flex gap-[1vw] cursor-pointer"
-                  onClick={toggleModalBudget}
+                <button
+                  disabled={loading}
+                  onClick={handleExplore}
+                  className="bg-blue-300 right-[0.5vw] top-[0.5vw] text-white text-[1vw] absolute font-bold mx-auto rounded-full h-[4vw] my-auto w-[8vw] flex items-center justify-center cursor-pointer text-center"
                 >
-                  <div className="w-[3vw] h-[3vw] rounded-full bg-green-100 flex items-center justify-center">
-                    <span
-                      className="material-icons text-green-500"
-                      style={{ fontSize: "1.6vw" }}
-                    >
-                      attach_money
-                    </span>
-                  </div>
-                  <div className="mt-[0.2vw]">
-                    <div className="text-[0.8vw] text-green-500 font-bold">
-                      Budget
-                    </div>
-                    <div className="text-[1vw] font-bold text-black">
-                      {selectedBudget !== "unlimited"
-                        ? parseFloat(selectedBudget).toLocaleString("id-ID", {
-                            style: "currency",
-                            currency: "IDR",
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0,
-                          })
-                        : "-"}
-                    </div>
-                  </div>
-                </div>
+                  Explore
+                </button>
               </div>
-              <button
-                disabled={loading}
-                onClick={handleExplore}
-                className="bg-blue-300 text-white text-[1vw] font-bold mx-auto mt-6 rounded-full h-[4vw] my-auto w-[8vw] flex items-center justify-center cursor-pointer text-center"
-              >
-                Explore
-              </button>
             </div>
           </div>
         </div>
@@ -298,12 +258,7 @@ export default function MainSearch() {
         onClose={toggleModalCalendar}
         onCalendarSelect={handleCalendarSelect}
       />
-      <ModalBudget
-        isOpen={isModalBudgetOpen}
-        onClose={toggleModalBudget}
-        selectedData={selectedBudget}
-        onBudgetSelect={handleBudgetSelection}
-      />
+
       {loading && <ModalLoading />}
     </>
   );

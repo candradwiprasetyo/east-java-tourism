@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
       "i0.wp.com",
       "bobobox.com",
       "images.unsplash.com",
+      "res.cloudinary.com",
     ],
   },
 };

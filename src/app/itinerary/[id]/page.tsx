@@ -16,7 +16,6 @@ interface Itinerary {
   end_date: string;
   itinerary_data: string;
   duration: number;
-  max_budget: number | null;
 }
 
 interface Activity {
@@ -207,19 +206,6 @@ export default function ItineraryPage() {
                   new Date(itinerary.start_date),
                   new Date(itinerary.end_date)
                 )}
-              </p>
-              <p>
-                <strong>Max Budget</strong>{" "}
-                {itinerary.max_budget
-                  ? parseFloat(itinerary.max_budget.toString()).toLocaleString(
-                      "id-ID",
-                      {
-                        style: "currency",
-                        currency: "IDR",
-                        minimumFractionDigits: 0,
-                      }
-                    )
-                  : "-"}
               </p>
             </div>
           </div>

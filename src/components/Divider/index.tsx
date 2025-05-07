@@ -3,25 +3,27 @@
 import React from "react";
 
 type PageDividerProps = {
+  color?: string;
   background?: string;
   direction?: "up" | "down";
 };
 
 const PageDivider: React.FC<PageDividerProps> = ({
-  background = "#fcece2",
+  color = "#fcece2",
+  background = "white",
   direction = "down",
 }) => {
   const rotate = direction === "up" ? "rotate(180deg)" : "none";
 
   return (
-    <div className="shapedividers">
+    <div className="shapedividers" style={{ background: background }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 35.28 2.17"
         preserveAspectRatio="none"
         style={{ transform: rotate }}
       >
-        <path fill={background}>
+        <path fill={color}>
           <animate
             attributeName="d"
             dur="4s"
@@ -32,7 +34,7 @@ const PageDivider: React.FC<PageDividerProps> = ({
               M0 .5c3.07.55 9.27-.42 16.14 0 6.88.4 13.75.57 19.14-.11V0H0z"
           />
         </path>
-        <path opacity="0.4" fill={background}>
+        <path opacity="0.4" fill={color}>
           <animate
             attributeName="d"
             dur="6s"
@@ -43,7 +45,7 @@ const PageDivider: React.FC<PageDividerProps> = ({
               M0 1c3.17.8 7.29-.38 10.04-.55 2.75-.17 9.25 1.47 12.67 1.3 3.43-.17 4.65-.84 7.05-.87 2.4-.02 5.52.88 5.52.88V0H0z"
           />
         </path>
-        <path opacity="0.3" fill={background}>
+        <path opacity="0.3" fill={color}>
           <animate
             attributeName="d"
             dur="8s"

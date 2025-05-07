@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import useHoliday from "../../hooks/useHoliday";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
-import { backgroundImage } from "@/constants/backgroundImage";
+// import { backgroundImage } from "@/constants/backgroundImage";
 
 const monthBgColors: { [key: number]: string } = {
   0: "bg-red-50", // Januari
@@ -34,7 +34,6 @@ const Holiday = () => {
     return <div className="text-center text-red-500">{error}</div>;
   }
 
-  // Filter holidays based on the selected filter
   let filteredHolidays = holidays;
   if (filter === "cuti") {
     filteredHolidays = holidays.filter((holiday) => holiday.is_cuti === true);
@@ -43,15 +42,14 @@ const Holiday = () => {
   }
 
   return (
-    <div className="p-4 text-title-primary container mx-auto px-40">
+    <div className="p-4 text-title-primary container mx-auto px-40 bg-[#FDEDE3]">
       <div className="text-[3vw] py-8 text-title-primary text-center">
         Don’t Miss These{" "}
         <span className="text-[4vw] font-bold font-satisfy text-title-secondary">
-          2025 Holidays!
+          2025 Holidays
         </span>
       </div>
 
-      {/* Filter Selection */}
       <div className="flex justify-center space-x-4 mb-8">
         <button
           className={`p-2 px-4 rounded-lg ${
@@ -79,8 +77,7 @@ const Holiday = () => {
         </button>
       </div>
 
-      {/* Display Filtered Holidays */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 justify-items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 justify-items-center  rounded-3xl">
         {filteredHolidays.length > 0 ? (
           filteredHolidays.map((holiday, index) => {
             const month = new Date(holiday.tanggal).getMonth();
@@ -89,16 +86,16 @@ const Holiday = () => {
             return (
               <div
                 key={index}
-                className="p-4 rounded-2xl flex justify-start items-center flex-col relative overflow-hidden w-full min-h-[150px]"
-                style={{
-                  backgroundImage: `url('${
-                    backgroundImage[Math.floor(Math.random() * 10) + 1]
-                  }')`,
-                  backgroundSize: "cover",
-                }}
+                className="p-4 bg-white rounded-2xl flex justify-start items-center flex-col relative overflow-hidden w-full min-h-[150px]"
+                // style={{
+                //   backgroundImage: `url('${
+                //     backgroundImage[Math.floor(Math.random() * 10) + 1]
+                //   }')`,
+                //   backgroundSize: "cover",
+                // }}
               >
                 <div
-                  className={`absolute inset-0 opacity-90 ${bgColorClass}`}
+                  className={`absolute inset-0 opacity-0 ${bgColorClass}`}
                 ></div>
                 <div className="absolute inset-4">
                   <div className="text-5xl font-bold text-center leading-none z-1">
@@ -111,7 +108,7 @@ const Holiday = () => {
                       })}
                     </div>
                   </div>
-                  <p className="text-center mt-2 text-xs">
+                  <p className="text-center mt-2 text-xs opacity-50">
                     {holiday.keterangan}
                   </p>
                 </div>

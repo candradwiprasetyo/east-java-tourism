@@ -15,4 +15,13 @@ export default {
     },
   },
   plugins: [],
+  safelist: [
+    "from-yellow-500",
+    "from-green-500",
+    "from-purple-500",
+    "from-blue-100",
+    "from-blue-500",
+    "from-red-500",
+    "from-neutral-300",
+  ],
 } satisfies Config;

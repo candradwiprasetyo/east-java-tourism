@@ -19,7 +19,7 @@ const ModalLoading = () => {
           Planning your perfect journey...
         </p>
         <div className="absolute w-full bottom-0 left-0 pointer-events-none z-10">
-          <PageDivider direction="up" background="#edcebb" />
+          <PageDivider direction="up" color="#edcebb" />
         </div>
       </div>
     </div>

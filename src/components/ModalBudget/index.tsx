@@ -79,7 +79,7 @@ const ModalBudget = ({
           Pick It
         </button>
         <div className="absolute w-full bottom-0 left-0 pointer-events-none">
-          <PageDivider direction="up" background="#edcebb" />
+          <PageDivider direction="up" color="#edcebb" />
         </div>
       </div>
     </>

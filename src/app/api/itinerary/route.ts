@@ -27,14 +27,8 @@ async function getItineraryFromAI(message: string) {
 // Handle POST request untuk menambah itinerary
 export async function POST(req: Request) {
   try {
-    const {
-      origin,
-      destinations,
-      interests,
-      start_date,
-      end_date,
-      max_budget,
-    } = await req.json();
+    const { origin, destinations, interests, start_date, end_date } =
+      await req.json();
 
     // Validasi data
     if (!origin || !destinations || !start_date || !end_date) {
@@ -57,12 +51,7 @@ export async function POST(req: Request) {
       paramInterests = `Carikan data pariwisata yang paling populer dan menarik wisatawan`;
     }
 
-    let paramBudget = "";
-    if (max_budget) {
-      paramBudget = `Seluruh total budget transportation + accommodation + food + attractions + miscellaneous tidak boleh lebih dari ${max_budget}. `;
-    }
-
-    const message = `Tolong buatkan itinerary lengkap dengan budget liburan ke kota ${destinations} (Jawa Timur, Indonesia) dari ${origin} selama ${countDay} hari. ${paramInterests}. Dari mulai tanggal ${start_date} sampai tanggal ${end_date}. Data harus lengkap diawali dengan tiket pergi dan diakhiri dengan tiket pulang yang masuk kategori transportation. ${paramBudget}
+    const message = `Tolong buatkan itinerary lengkap dengan budget liburan ke kota ${destinations} (Jawa Timur, Indonesia) dari ${origin} selama ${countDay} hari. ${paramInterests}. Dari mulai tanggal ${start_date} sampai tanggal ${end_date}. Data harus lengkap diawali dengan tiket pergi dan diakhiri dengan tiket pulang yang masuk kategori transportation. 
     Ada 5 kategori data yaitu: 
     1. transportation 
     2. accommodation 
@@ -111,8 +100,6 @@ export async function POST(req: Request) {
     Jika kegiatan adalah food di hotel tempat check-in, maka cost adalah 0.
 
     Jangan buat activity makan malam di hotel.
-
-    ${paramBudget}
     
     Tolong buatkan menjadi format json yang bisa saya gunakan untuk halaman web.
     
@@ -130,8 +117,8 @@ export async function POST(req: Request) {
 
     // Query untuk insert data itinerary ke tabel
     const result = await client.query(
-      `INSERT INTO itineraries (origin, destinations, interests, start_date, end_date, itinerary_data, duration, max_budget)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
+      `INSERT INTO itineraries (origin, destinations, interests, start_date, end_date, itinerary_data, duration)
+       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [
         origin,
         destinations,
@@ -140,7 +127,6 @@ export async function POST(req: Request) {
         end_date,
         itineraryData,
         countDay,
-        max_budget || null,
       ]
     );
 

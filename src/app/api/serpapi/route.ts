@@ -21,7 +21,7 @@ export async function GET(request: Request) {
     return NextResponse.json(firstImage);
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch from SerpApi" },
+      { error: `Failed to fetch from SerpApi ${error}` },
       { status: 500 }
     );
   }

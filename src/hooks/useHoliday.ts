@@ -32,15 +32,19 @@ const useHoliday = () => {
 
         const successfulResults = results
           .filter(
-            (result): result is PromiseFulfilledResult<any> =>
+            (result): result is PromiseFulfilledResult<Holiday[]> =>
               result.status === "fulfilled"
           )
           .map((result) => result.value);
 
         const combined = successfulResults.flat();
         setHolidays(combined);
-      } catch (err: any) {
-        setError(err.message || "Something went wrong");
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message || "Something went wrong");
+        } else {
+          setError("Something went wrong");
+        }
       } finally {
         setLoading(false);
       }

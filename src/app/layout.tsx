@@ -5,23 +5,27 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "optional",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "optional",
 });
 
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
   weight: ["400", "700"],
+  display: "optional",
 });
 
 const satisfy = Satisfy({
   subsets: ["latin"],
   variable: "--font-satisfy",
   weight: ["400"],
+  display: "optional",
 });
 
 export const metadata: Metadata = {
@@ -42,6 +46,26 @@ export default function RootLayout({
       <head>
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Geist&display=optional"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Geist+Mono&display=optional"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:400,700&display=optional"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Satisfy&display=optional"
           rel="stylesheet"
         />
       </head>
