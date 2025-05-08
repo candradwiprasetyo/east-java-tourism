@@ -49,10 +49,10 @@ const ModalLocation = ({
   return (
     <>
       <div
-        className="fixed w-full bg-black bg-opacity-80 flex justify-center items-center h-screen top-0 left-0 z-2"
+        className="fixed w-full bg-black bg-opacity-80 flex justify-center items-center h-screen top-0 left-0 z-10"
         onClick={onClose}
       ></div>
-      <div className="bg-white p-8 rounded-2xl text-title-primary fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden">
+      <div className="bg-white p-8 rounded-2xl text-title-primary fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 overflow-hidden">
         <h2 className="text-lg font-bold mb-8">Pick Your Next Journey</h2>
         <div className="grid grid-cols-3 gap-y-2 gap-x-4 text-sm">
           {cities.map((city, index) => (

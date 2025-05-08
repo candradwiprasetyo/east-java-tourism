@@ -29,11 +29,11 @@ const ModalBudget = ({
   return (
     <>
       <div
-        className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center"
+        className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-10"
         onClick={onClose}
       ></div>
       <div
-        className="bg-white p-6 rounded-2xl w-96 text-title-primary fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden"
+        className="z-20 bg-white p-6 rounded-2xl w-96 text-title-primary fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold mb-4">Define Your Spending Plan</h2>

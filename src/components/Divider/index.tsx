@@ -6,17 +6,22 @@ type PageDividerProps = {
   color?: string;
   background?: string;
   direction?: "up" | "down";
+  customClass?: string;
 };
 
 const PageDivider: React.FC<PageDividerProps> = ({
   color = "#fcece2",
   background = "white",
   direction = "down",
+  customClass = "relative",
 }) => {
   const rotate = direction === "up" ? "rotate(180deg)" : "none";
 
   return (
-    <div className="shapedividers" style={{ background: background }}>
+    <div
+      className={`shapedividers ${customClass}`}
+      style={{ background: background }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 35.28 2.17"
@@ -65,11 +70,10 @@ const PageDivider: React.FC<PageDividerProps> = ({
         }
 
         .shapedividers {
-          position: relative;
           width: 100%;
           height: 120px;
           overflow: hidden;
-          z-index: -1;
+          z-index: 1;
           pointer-events: none;
         }
 
