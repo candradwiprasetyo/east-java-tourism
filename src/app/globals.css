@@ -72,6 +72,11 @@ body {
   gap: 1.5rem;
 }
 
+.prose-custom p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
