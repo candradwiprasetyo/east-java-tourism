@@ -1,13 +1,19 @@
 import Image from "next/image";
 import { tourData } from "@/constants/tourData";
+import PageDivider from "../Divider";
 
 const Maps = () => {
   return (
-    <>
-      <div className="w-full h-screen bg-maps relative">
-        <div className="text-[3vw] py-4 text-title-primary text-center">
+    <div className="bg-ocean py-20 relative">
+      <PageDivider
+        background="transparent"
+        color="white"
+        customClass="absolute top-0 z-0"
+      />
+      <div className="w-full min-h-screen bg-maps relative z-50">
+        <div className="text-[3vw] pt-10 text-white text-center">
           Lets Find{" "}
-          <span className="text-[4vw] font-bold font-satisfy text-title-secondary ">
+          <span className="text-[4vw] font-bold font-satisfy text-title-primary ">
             Your
           </span>{" "}
           Next Escape
@@ -25,7 +31,7 @@ const Maps = () => {
               }}
             >
               <div
-                className="animate-bounce text-red-600"
+                className="animate-bounce text-red-400"
                 style={{
                   fontSize: "60px",
                   animationDelay: randomDelay,
@@ -36,7 +42,7 @@ const Maps = () => {
                   location_on
                 </i>
               </div>
-              <div className="absolute hidden group-hover:block bg-gray-700 shadow-lg rounded-xl w-[240px] z-10 text-white -mt-10 overflow-hidden">
+              <div className="absolute hidden group-hover:block bg-gray-700 shadow-lg rounded-xl w-[240px] z-60 text-white -mt-10 overflow-hidden">
                 <div className="relative">
                   <Image
                     src={loc.images}
@@ -58,7 +64,13 @@ const Maps = () => {
           );
         })}
       </div>
-    </>
+      <PageDivider
+        background="transparent"
+        color="white"
+        customClass="absolute bottom-0 z-0"
+        direction="up"
+      />
+    </div>
   );
 };
 

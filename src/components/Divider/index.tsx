@@ -11,9 +11,9 @@ type PageDividerProps = {
 
 const PageDivider: React.FC<PageDividerProps> = ({
   color = "#fcece2",
-  background = "white",
+  background = "transparent",
   direction = "down",
-  customClass = "relative",
+  customClass = "relative z-[-1]",
 }) => {
   const rotate = direction === "up" ? "rotate(180deg)" : "none";
 
@@ -73,7 +73,6 @@ const PageDivider: React.FC<PageDividerProps> = ({
           width: 100%;
           height: 120px;
           overflow: hidden;
-          z-index: 1;
           pointer-events: none;
         }
 

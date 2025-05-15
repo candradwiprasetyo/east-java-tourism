@@ -76,11 +76,11 @@ const ModalLocation = ({
         </div>
         <button
           onClick={onClose}
-          className="bg-green-400 text-white p-3 rounded-lg mt-4 block mx-auto"
+          className="bg-green-400 text-white p-3 rounded-lg mt-4 block mx-auto mb-10"
         >
           Pick It
         </button>
-        <div className="absolute w-full bottom-0 left-0 pointer-events-none">
+        <div className="absolute w-full bottom-0 left-0 pointer-events-none z-[-1]">
           <PageDivider direction="up" color="#edcebb" />
         </div>
       </div>

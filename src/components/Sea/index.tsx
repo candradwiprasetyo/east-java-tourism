@@ -5,9 +5,13 @@ export default function Sea() {
   return (
     <>
       <div className="overflow-hidden w-full h-[460px] relative bg-gradient-to-b from-blue-100 to-blue-300 flex text-white items-center justify-center">
-        <PageDivider background="transparent" customClass="absolute top-0" />
+        <PageDivider
+          background="transparent"
+          color="white"
+          customClass="absolute top-0 z-10"
+        />
         <div className="text-center">
-          <div className="font-satisfy text-5xl font-bold mb-4 text-title-primary">
+          <div className="font-satisfy text-6xl font-bold mb-8 text-title-primary">
             Whispers of Nature
           </div>
           <div className="text-xl">
@@ -18,7 +22,7 @@ export default function Sea() {
         <PageDivider
           direction="up"
           background="transparent"
-          customClass="absolute bottom-0"
+          customClass="absolute bottom-0 z-10"
         />
 
         <div className="absolute w-full h-40 bottom-20">

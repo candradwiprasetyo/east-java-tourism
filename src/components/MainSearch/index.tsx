@@ -118,7 +118,7 @@ export default function MainSearch() {
 
   return (
     <>
-      <div className="flex items-center h-screen relative bg-[#fcece2]">
+      <div className="flex items-center h-screen relative">
         <div className="absolute w-[12vw] h-[4vw] mx-auto left-0 right-0 top-0">
           <Image
             src="/assets/images/wonderful-indonesia.png"
@@ -138,7 +138,7 @@ export default function MainSearch() {
               )}
               style={{ height: `${cover.height}vh` }}
             >
-              <div className="absolute inset-0 bg-black opacity-60"></div>
+              <div className="absolute inset-0 bg-black opacity-40"></div>
               <div
                 className={clsx(
                   "text-white absolute bottom-[5%] text-[0.8vw] w-full text-center font-bold",

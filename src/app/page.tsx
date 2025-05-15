@@ -11,16 +11,14 @@ export default function Home() {
   return (
     <>
       <MainSearch />
-      <PageDivider />
       <Maps />
-      <PageDivider direction="up" />
       <Gallery />
       <Sea />
       <Holiday />
       <PageDivider />
       <Event />
       <Footer />
-      <PageDivider direction="up" />
+      <PageDivider direction="up" background="transparent" />
     </>
   );
 }

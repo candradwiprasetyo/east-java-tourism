@@ -72,8 +72,10 @@ export async function POST(req: Request) {
             {
               "time": "HH:SS",
               "activity": "",
+              "place": "",
               "address": "",
               "category": "",
+              "transportation_type": "",
               "cost": "",
               "image_url": "",
               "google_maps_url": "",
@@ -83,15 +85,18 @@ export async function POST(req: Request) {
       ]
     }
     
-    Tolong buatkan activity yang detail terkait wisata atau tempat yang rekomended di wilayah tersebut beserta alamat lengkapnya. Masing-masing activity harus ada alamat lengkapnya.
 
-    Untuk activity transportation, jelaskan juga menggunakan moda transportasi apa seperti kereta atau pesawat atau bus dengan nama armada atau maskapai.
+    Buatkan budget setiap activity seakurat mungkin dengan harga sebenarnya.
 
     Buatkan jadwal itinerary ini seefektif mungkin dan seefisien mungkin dari sisi jarak dan waktu. 
 
-    jika activity adalah accomodation, berikan hotel yang benar-benar valid ada di kota tempat destinasi. Jangan membuat hotel dummy.
+    Tolong buatkan activity yang detail terkait wisata atau tempat yang rekomended di wilayah tersebut beserta alamat lengkapnya. Masing-masing activity harus ada alamat lengkapnya.
     
-    Buatkan budget setiap activity seakurat mungkin dengan harga sebenarnya.
+    Untuk category transportation di awal dan akhir perjalanan, usahakan menggunakan moda transportasi pesawat. Jika tidak memungkinkan, maka gunakan moda transportasi kereta api. 
+
+    Untuk category transportation, jelaskan juga menggunakan moda transportasi apa seperti kereta atau pesawat atau bus dengan detail nama kereta api atau maskapai.
+
+    jika activity adalah accomodation, berikan hotel yang benar-benar valid ada di kota tempat destinasi. Jangan membuat hotel dummy.
 
     Setiap activity, carikan data google_maps_url yang valid yang bisa dibuka untuk digunakan rute ke lokasi tersebut. Berikan itinerary dengan lokasi yang menyertakan URL Google Maps yang langsung menuju tempat tersebut (bukan shortened link atau embed), cukup berupa https://www.google.com/maps?q=Nama+Tempat atau https://www.google.com/maps/place/Nama+Tempat, agar bisa dibuka dengan mudah.
 
@@ -99,9 +104,17 @@ export async function POST(req: Request) {
 
     Jika kegiatan adalah food di hotel tempat check-in, maka cost adalah 0.
 
+    Jika category adalah transportation, maka berikan isi transportation_type dengan moda transportation pesawat, kereta api atau bus.
+
+    Untuk activity, berikan keterangan yang lengkap dengan aktifitas dan juga tempatnya. contohnya: Dinner at the IBC Restaurant Sidoarjo. 
+    
+    
+
     Jangan buat activity makan malam di hotel.
     
     Tolong buatkan menjadi format json yang bisa saya gunakan untuk halaman web.
+
+    Berikan jawaban dalam bahasa inggris.
     
     Tolong pastikan jawaban yang anda berikan hanya format json yang saya inginkan. jangan ada kata-kata lain yang tidak saya butuhkan.
     

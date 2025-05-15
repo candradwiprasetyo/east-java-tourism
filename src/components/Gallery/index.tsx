@@ -14,7 +14,7 @@ const Gallery = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="bg-[#FDEDE3]">
+    <div className="bg-white">
       <div className="container mx-auto px-40 pb-20">
         <div className="text-[3vw] py-16 text-title-primary px-10 ">
           Catch the{" "}
