@@ -8,6 +8,7 @@ import { getEventDetail } from "@/hooks/useEvent";
 import { sanitizeDescription } from "@/lib/sanitize";
 import PageDivider from "@/components/Divider";
 import Link from "next/link";
+import Loading from "@/components/Loading";
 
 interface Props {
   eventId: string;
@@ -31,7 +32,7 @@ export default function EventDetailClient({ eventId }: Props) {
     loadEvent();
   }, [eventId]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (!event) return <p>Event not found</p>;
 
   return (

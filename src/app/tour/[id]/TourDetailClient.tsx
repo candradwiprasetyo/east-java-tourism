@@ -7,6 +7,7 @@ import { getTourDetail } from "@/hooks/useTour";
 import { sanitizeDescription } from "@/lib/sanitize";
 import PageDivider from "@/components/Divider";
 import Link from "next/link";
+import Loading from "@/components/Loading";
 
 interface Props {
   tourId: string;
@@ -30,7 +31,7 @@ export default function TourDetailClient({ tourId }: Props) {
     loadTour();
   }, [tourId]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (!tour) return <p>Event not found</p>;
 
   return (
@@ -42,7 +43,7 @@ export default function TourDetailClient({ tourId }: Props) {
         </h1>
         <div className="text-sm text-gray-500 mb-4">{tour?.address}</div>
         <Link
-          href="/#event-list"
+          href="/"
           className="inline-block px-4 py-2 bg-blue-400 text-white rounded-full hover:bg-blue-700 transition mb-4"
           scroll={true}
         >

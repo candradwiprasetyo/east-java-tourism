@@ -1,6 +1,7 @@
 export interface TourDetail {
   id: number;
   city_id: number;
+  city_name: string;
   name: string;
   address: string;
   description: string;

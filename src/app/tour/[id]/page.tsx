@@ -6,6 +6,9 @@ interface Props {
   };
 }
 
-export default function TourDetailPage({ params }: Props) {
-  return <TourDetailClient tourId={params.id} />;
+export default async function TourDetailPage({ params }: Props) {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+
+  return <TourDetailClient tourId={id} />;
 }

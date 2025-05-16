@@ -6,6 +6,8 @@ interface Props {
   };
 }
 
-export default function EventDetailPage({ params }: Props) {
-  return <EventDetailClient eventId={params.id} />;
+export default async function EventDetailPage({ params }: Props) {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+  return <EventDetailClient eventId={id} />;
 }

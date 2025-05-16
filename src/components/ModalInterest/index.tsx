@@ -1,4 +1,5 @@
 import PageDivider from "../Divider";
+import { useTourCategory } from "@/hooks/useTourCategory";
 
 type ModalInterestProps = {
   isOpen: boolean;
@@ -15,22 +16,7 @@ const ModalInterest = ({
 }: ModalInterestProps) => {
   if (!isOpen) return null;
 
-  const interests: string[] = [
-    "nature",
-    "culture",
-    "culinary",
-    "adventure",
-    "relaxation",
-    "shopping",
-    "history",
-    "spiritual",
-    "wildlife",
-    "urban",
-    "photography",
-    "romantic",
-    "family",
-    "eco-tourism",
-  ];
+  const { tourCategory } = useTourCategory();
 
   return (
     <>
@@ -43,21 +29,20 @@ const ModalInterest = ({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold mb-8">Choose What Excites You</h2>
-        <div className="grid grid-cols-3 text-sm gap-y-2 gap-x-4 max-h-60 overflow-y-auto">
-          {interests.map((interest, index) => (
+        <div className="grid grid-cols-2 text-sm gap-y-2 gap-x-4 max-h-60 overflow-y-auto w-[300px]">
+          {tourCategory.map((interest, index) => (
             <div key={index} className="flex items-center">
               <div className="w-6">
                 <input
                   type="checkbox"
-                  id={interest}
-                  checked={selectedData.includes(interest)}
-                  onChange={() => onInterestSelect(interest)}
+                  checked={selectedData.includes(interest.name)}
+                  onChange={() => onInterestSelect(interest.name)}
                   className="bg-gray-200 hover:bg-gray-300 cursor-pointer 
       w-5 h-5  focus:outline-none rounded-xl"
                 />
               </div>
-              <label htmlFor={interest} className="ml-2 capitalize">
-                {interest.replace("-", " ")}
+              <label htmlFor={interest.name} className="ml-2 capitalize">
+                {interest.name.replace("-", " ")}
               </label>
             </div>
           ))}
