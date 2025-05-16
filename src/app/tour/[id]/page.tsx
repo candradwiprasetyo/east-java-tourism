@@ -1,9 +1,7 @@
 import TourDetailClient from "./TourDetailClient";
 
 interface Props {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function TourDetailPage({ params }: Props) {

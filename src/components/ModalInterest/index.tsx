@@ -14,9 +14,8 @@ const ModalInterest = ({
   selectedData,
   onInterestSelect,
 }: ModalInterestProps) => {
-  if (!isOpen) return null;
-
   const { tourCategory } = useTourCategory();
+  if (!isOpen) return null;
 
   return (
     <>

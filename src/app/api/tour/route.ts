@@ -21,7 +21,7 @@ export async function GET(request: Request) {
       LEFT JOIN cities ON tours.city_id = cities.id
     `;
 
-    let values: any[] = [];
+    const values: boolean[] = [];
 
     if (isShowOnMap === "true") {
       query += " WHERE tours.is_show_on_map = $1";
