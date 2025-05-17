@@ -15,20 +15,14 @@ const useLocation = () => {
     };
 
     if (navigator.geolocation) {
-      console.log("Geolocation is available.");
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
           try {
             const res = await fetch(
               `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.NEXT_PUBLIC_OPENCAGE_API_KEY}`
             );
             const data = await res.json();
-            console.log(
-              "City from coordinates:",
-              data.results[0]?.components.city
-            );
             setUserCity(data.results[0]?.components.city || "Unknown");
           } catch (error) {
             console.error("Failed to fetch city from coordinates:", error);

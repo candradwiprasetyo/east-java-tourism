@@ -1,39 +1,92 @@
-import { NextResponse } from "next/server";
-import { Pool } from "pg";
+import { NextRequest, NextResponse } from "next/server";
+import pool from "@/lib/db";
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
-
-export async function GET(request: Request) {
+export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const isShowOnMap = searchParams.get("is_show_on_map");
+    const isAdmin = req.nextUrl.searchParams.get("admin") === "true";
+    const limitParam = req.nextUrl.searchParams.get("limit");
+    const offsetParam = req.nextUrl.searchParams.get("offset");
 
-    let query = `
-      SELECT 
-        tours.*, 
-        cities.name AS city_name
-      FROM tours
-      LEFT JOIN cities ON tours.city_id = cities.id
-    `;
+    const limit = limitParam ? parseInt(limitParam) : 10;
+    const offset = offsetParam ? parseInt(offsetParam) : 0;
 
-    const values: boolean[] = [];
+    const baseQuery = isAdmin
+      ? `FROM tours 
+         JOIN cities ON tours.city_id = cities.id
+         JOIN tour_categories ON tour_category_id = tour_categories.id`
+      : `FROM tours 
+         JOIN cities ON tours.city_id = cities.id
+         JOIN tour_categories ON tour_category_id = tour_categories.id
+         WHERE tours.is_show_on_map = true`;
 
-    if (isShowOnMap === "true") {
-      query += " WHERE tours.is_show_on_map = $1";
-      values.push(true);
-    }
+    const dataQuery = `
+      SELECT tours.*, cities.name AS city_name, tour_categories.name AS tour_category_name 
+      ${baseQuery}
+      ORDER BY tours.created_at DESC 
+      LIMIT $1 OFFSET $2`;
 
-    query += " ORDER BY tours.created_at ASC";
+    const totalQuery = `SELECT COUNT(*) ${baseQuery}`;
 
-    const result = await pool.query(query, values);
-    return NextResponse.json(result.rows);
+    const [dataResult, totalResult] = await Promise.all([
+      pool.query(dataQuery, [limit, offset]),
+      pool.query(totalQuery),
+    ]);
+
+    return NextResponse.json({
+      data: dataResult.rows,
+      total: parseInt(totalResult.rows[0].count),
+    });
   } catch (error) {
     console.error("Error fetching tours:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
+  }
+}
+
+export async function POST(req: Request) {
+  try {
+    const {
+      city_id,
+      tour_category_id,
+      name,
+      address,
+      description,
+      thumbnail_url,
+      images_url,
+      longitude,
+      latitude,
+      map_top,
+      map_left,
+      is_show_on_map,
+      map_description,
+    } = await req.json();
+
+    const result = await pool.query(
+      `INSERT INTO tours 
+        (city_id, tour_category_id, name, address, description, thumbnail_url, images_url, 
+         longitude, latitude, map_top, map_left, is_show_on_map, map_description)
+       VALUES 
+        ($1, $2, $3, $4, $5, $6, $7, 
+         $8, $9, $10, $11, $12, $13) RETURNING *`,
+      [
+        city_id,
+        tour_category_id,
+        name,
+        address,
+        description,
+        thumbnail_url,
+        images_url,
+        longitude,
+        latitude,
+        map_top,
+        map_left,
+        is_show_on_map,
+        map_description,
+      ]
+    );
+
+    return NextResponse.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error creating tour:", error);
+    return new NextResponse("Failed to create tour", { status: 500 });
   }
 }

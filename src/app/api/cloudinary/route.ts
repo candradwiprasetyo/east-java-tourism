@@ -18,31 +18,28 @@ export async function POST(req: Request) {
   const buffer = Buffer.from(await file.arrayBuffer());
 
   try {
-    // Menggunakan new Promise untuk menangani hasil upload dari Cloudinary
     const result = await new Promise<UploadApiResponse>((resolve, reject) => {
       cloudinary.uploader
         .upload_stream({ resource_type: "auto" }, (error, result) => {
           if (error) {
-            return reject(error); // Menangani error jika ada
+            return reject(error);
           }
 
           if (!result) {
-            return reject(new Error("Cloudinary upload result is undefined")); // Menangani kasus result undefined
+            return reject(new Error("Cloudinary upload result is undefined"));
           }
 
-          resolve(result); // Mengembalikan result yang valid
+          resolve(result);
         })
         .end(buffer);
     });
 
-    // Pastikan result tidak undefined dan memiliki secure_url
     if (!result || !result.secure_url) {
       throw new Error("Failed to upload file: no secure_url returned");
     }
 
     return NextResponse.json({ url: result.secure_url }, { status: 200 });
   } catch (error: unknown) {
-    // Menangani error jika terjadi
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }

@@ -4,13 +4,13 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #ffffff;
+  --foreground: #2a5475;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
-    --foreground: #ededed;
+    --foreground: #2a5475;
   }
 }
 
@@ -75,6 +75,12 @@ body {
 .prose-custom p {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.input {
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
 }
 
 @keyframes gradient {

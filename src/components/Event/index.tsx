@@ -36,7 +36,7 @@ const Event = () => {
         </div>
       </div>
 
-      <div className="relative w-full">
+      <div className="relative w-full text-white">
         <div className="flex w-max animate-scroll">
           {duplicatedEvents.map((event, idx) => (
             <Link

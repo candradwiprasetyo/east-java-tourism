@@ -15,4 +15,6 @@ export interface TourDetail {
   created_at: string;
   updated_at: string;
   tour_category_id: number;
+  tour_category_name: string;
+  map_description: string;
 }

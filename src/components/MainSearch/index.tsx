@@ -95,9 +95,7 @@ export default function MainSearch() {
       }
 
       const data = await res.json();
-      console.log("Itinerary saved with ID:", data.id);
 
-      // Redirect ke halaman result dengan query string
       const params = new URLSearchParams();
       if (selectedCities.length > 0) {
         params.append("cities", selectedCities.join(","));

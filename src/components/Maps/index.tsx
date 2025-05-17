@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // import useRouter
+import { useRouter } from "next/navigation";
 import PageDivider from "../Divider";
 import { TourDetail } from "@/types/tour";
 import { getToursShownOnMap } from "@/hooks/useTour";
@@ -10,12 +10,13 @@ import { getToursShownOnMap } from "@/hooks/useTour";
 const Maps = () => {
   const [tourData, setTourData] = useState<TourDetail[]>([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter(); // init router
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchTours() {
       try {
         const tours = await getToursShownOnMap();
+        console.log(tours);
         setTourData(tours);
       } catch (err) {
         console.error("Error loading tours:", err);

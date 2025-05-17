@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import getClient from "../../../lib/db";
+import pool from "../../../lib/db";
 import { calculateDayDifference } from "@/lib/dateUtils";
 
-// Fungsi untuk memanggil API AI
 async function getItineraryFromAI(message: string) {
   const apiKey = process.env.OPENAI_API_KEY;
   const openaiResponse = await fetch(
@@ -21,16 +20,14 @@ async function getItineraryFromAI(message: string) {
   );
 
   const data = await openaiResponse.json();
-  return data.choices[0]?.message?.content || ""; // Ambil hasil yang sesuai dari response
+  return data.choices[0]?.message?.content || "";
 }
 
-// Handle POST request untuk menambah itinerary
 export async function POST(req: Request) {
   try {
     const { origin, destinations, interests, start_date, end_date } =
       await req.json();
 
-    // Validasi data
     if (!origin || !destinations || !start_date || !end_date) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -108,7 +105,6 @@ export async function POST(req: Request) {
 
     Untuk activity, berikan keterangan yang lengkap dengan aktifitas dan juga tempatnya. contohnya: Dinner at the IBC Restaurant Sidoarjo. 
     
-    
 
     Jangan buat activity makan malam di hotel.
     
@@ -120,16 +116,11 @@ export async function POST(req: Request) {
     
     berikan jawaban hanya format json tanpa \`json atau \`\`.`;
 
-    // Memanggil API AI untuk mendapatkan itinerary dalam format JSON
     const itineraryData = await getItineraryFromAI(message);
-    console.log(message);
-    // const itineraryData = {};
+    // console.log(message);
 
-    // Ambil client dari database
-    const client = await getClient();
-
-    // Query untuk insert data itinerary ke tabel
-    const result = await client.query(
+    // langsung pakai pool.query tanpa connect client manual
+    const result = await pool.query(
       `INSERT INTO itineraries (origin, destinations, interests, start_date, end_date, itinerary_data, duration)
        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [
@@ -145,7 +136,6 @@ export async function POST(req: Request) {
 
     const { id } = result.rows[0];
 
-    // Kembalikan response sukses
     return NextResponse.json(
       { message: "Itinerary created successfully", id },
       { status: 201 }
@@ -179,12 +169,10 @@ export async function GET(req: Request) {
       );
     }
 
-    const client = await getClient();
-
-    const result = await client.query(
-      "SELECT * FROM itineraries WHERE id = $1",
-      [id]
-    );
+    // langsung pool.query tanpa client connect/release
+    const result = await pool.query("SELECT * FROM itineraries WHERE id = $1", [
+      id,
+    ]);
 
     if (result.rows.length === 0) {
       return NextResponse.json(
@@ -193,7 +181,6 @@ export async function GET(req: Request) {
       );
     }
 
-    // Kembalikan data itinerary
     return NextResponse.json({ data: result.rows[0] });
   } catch (error) {
     console.error("Error fetching itinerary:", error);

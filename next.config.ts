@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
       "bobobox.com",
       "images.unsplash.com",
       "res.cloudinary.com",
+      "spike-vue-horizontal.netlify.app",
     ],
   },
 };

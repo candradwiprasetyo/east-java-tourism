@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getWeatherIconName } from "@/lib/weather";
 
 export interface City {
@@ -29,9 +29,10 @@ export function useCity() {
   useEffect(() => {
     async function fetchCities() {
       try {
-        const res = await fetch("api/city");
+        const res = await fetch("/api/city?limit=15");
         if (!res.ok) throw new Error("Failed to fetch cities");
-        const data: City[] = await res.json();
+        const json = await res.json();
+        const data: City[] = json.data;
 
         const citiesWithWeather = await Promise.all(
           data.map(async (city) => {
@@ -67,4 +68,94 @@ export function useCity() {
   }, []);
 
   return { cities, loading, error };
+}
+
+export function useAdminCity(limit = 10, offset = 0) {
+  const [cities, setCities] = useState<City[]>([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  const fetchCities = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `/api/city?admin=true&limit=${limit}&offset=${offset}`
+      );
+      if (!res.ok) throw new Error("Failed to fetch cities");
+
+      const json = await res.json();
+
+      setCities(json.data || []);
+      setTotal(json.total || 0);
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setLoading(false);
+    }
+  }, [limit, offset]);
+
+  const getCityById = useCallback(async (id: number): Promise<City> => {
+    const res = await fetch(`/api/city/${id}`);
+    if (!res.ok) throw new Error("Failed to fetch city by ID");
+    const data: City = await res.json();
+    return data;
+  }, []);
+
+  const createCity = useCallback(
+    async (city: Omit<City, "id" | "created_at" | "updated_at">) => {
+      const res = await fetch("/api/city", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(city),
+      });
+      if (!res.ok) throw new Error("Failed to create city");
+      await fetchCities();
+    },
+    [fetchCities]
+  );
+
+  const updateCity = useCallback(
+    async (id: number, city: Partial<City>) => {
+      const res = await fetch(`/api/city/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(city),
+      });
+      if (!res.ok) throw new Error("Failed to update city");
+      await fetchCities();
+    },
+    [fetchCities]
+  );
+
+  const deleteCity = useCallback(
+    async (id: number) => {
+      const res = await fetch(`/api/city/${id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) throw new Error("Failed to delete city");
+      await fetchCities();
+    },
+    [fetchCities]
+  );
+
+  useEffect(() => {
+    fetchCities();
+  }, [fetchCities]);
+
+  return {
+    cities,
+    total,
+    loading,
+    error,
+    fetchCities,
+    getCityById,
+    createCity,
+    updateCity,
+    deleteCity,
+  };
 }
