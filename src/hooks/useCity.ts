@@ -21,6 +21,19 @@ export interface City {
   };
 }
 
+export async function getCityDetail(id: string): Promise<City> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/city/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch tour detail");
+
+  return res.json();
+}
+
 export function useCity() {
   const [cities, setCities] = useState<City[]>([]);
   const [loading, setLoading] = useState(true);

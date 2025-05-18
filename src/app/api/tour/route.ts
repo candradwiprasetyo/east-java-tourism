@@ -6,30 +6,49 @@ export async function GET(req: NextRequest) {
     const isAdmin = req.nextUrl.searchParams.get("admin") === "true";
     const limitParam = req.nextUrl.searchParams.get("limit");
     const offsetParam = req.nextUrl.searchParams.get("offset");
+    const cityIdParam = req.nextUrl.searchParams.get("city_id");
 
     const limit = limitParam ? parseInt(limitParam) : 10;
     const offset = offsetParam ? parseInt(offsetParam) : 0;
 
-    const baseQuery = isAdmin
-      ? `FROM tours 
-         JOIN cities ON tours.city_id = cities.id
-         JOIN tour_categories ON tour_category_id = tour_categories.id`
-      : `FROM tours 
-         JOIN cities ON tours.city_id = cities.id
-         JOIN tour_categories ON tour_category_id = tour_categories.id
-         WHERE tours.is_show_on_map = true`;
+    const queryParams: (string | number)[] = [];
+
+    let baseQuery = `
+      FROM tours
+      JOIN cities ON tours.city_id = cities.id
+      JOIN tour_categories ON tour_category_id = toaur_categories.id
+    `;
+
+    const whereConditions: string[] = [];
+
+    if (!isAdmin) {
+      whereConditions.push("tours.is_show_on_map = true");
+    }
+
+    if (cityIdParam) {
+      whereConditions.push("tours.city_id = $" + (whereConditions.length + 1));
+      queryParams.push(cityIdParam);
+    }
+
+    if (whereConditions.length > 0) {
+      baseQuery += " WHERE " + whereConditions.join(" AND ");
+    }
+
+    queryParams.push(limit);
+    queryParams.push(offset);
 
     const dataQuery = `
-      SELECT tours.*, cities.name AS city_name, tour_categories.name AS tour_category_name 
+      SELECT tours.*, cities.name AS city_name, tour_categories.name AS tour_category_name
       ${baseQuery}
-      ORDER BY tours.created_at DESC 
-      LIMIT $1 OFFSET $2`;
+      ORDER BY tours.created_at DESC
+      LIMIT $${queryParams.length - 1} OFFSET $${queryParams.length}
+    `;
 
     const totalQuery = `SELECT COUNT(*) ${baseQuery}`;
 
     const [dataResult, totalResult] = await Promise.all([
-      pool.query(dataQuery, [limit, offset]),
-      pool.query(totalQuery),
+      pool.query(dataQuery, queryParams),
+      pool.query(totalQuery, cityIdParam ? [cityIdParam] : []),
     ]);
 
     return NextResponse.json({

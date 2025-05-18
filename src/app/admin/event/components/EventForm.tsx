@@ -115,7 +115,11 @@ export default function EventForm({ editEventId, onFinish }: Props) {
       });
 
       if (res.ok) {
-        onFinish ? onFinish() : router.push("/admin/event");
+        if (onFinish) {
+          onFinish();
+        } else {
+          router.push("/admin/event");
+        }
       } else {
         alert("Gagal menyimpan event.");
       }
