@@ -1,77 +1,81 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
 
-type ParamsContext = { params: { id: string } };
+function getIdFromUrl(request: Request) {
+  const url = new URL(request.url);
+  const segments = url.pathname.split("/");
+  return segments[segments.length - 1];
+}
 
-export async function GET(req: Request, context: ParamsContext) {
+export async function GET(request: Request) {
+  const id = getIdFromUrl(request);
+
+  if (!id) {
+    return new NextResponse("City ID is required", { status: 400 });
+  }
+
   try {
-    const { id } = context.params;
-
-    const result = await pool.query("SELECT * FROM tours WHERE id = $1", [id]);
+    const result = await pool.query(`SELECT * FROM cities WHERE id = $1`, [id]);
 
     if (result.rows.length === 0) {
-      return new NextResponse("Tour not found", { status: 404 });
+      return new NextResponse("City not found", { status: 404 });
     }
 
     return NextResponse.json(result.rows[0]);
   } catch (error) {
-    console.error("Error fetching tour:", error);
-    return new NextResponse("Failed to fetch tour", { status: 500 });
+    console.error("Error fetching city:", error);
+    return new NextResponse("Failed to fetch city", { status: 500 });
   }
 }
 
-export async function PUT(req: Request, context: ParamsContext) {
-  try {
-    const { id } = context.params;
+export async function PUT(request: Request) {
+  const id = getIdFromUrl(request);
 
+  if (!id) {
+    return new NextResponse("City ID is required", { status: 400 });
+  }
+
+  try {
     const {
-      city_id,
       name,
-      location,
       description,
-      images_url,
       thumbnail_url,
-      is_featured,
-    } = await req.json();
+      // properti lain jika ada
+    } = await request.json();
 
     const result = await pool.query(
-      `UPDATE tours SET 
-        city_id = $1,
-        name = $2,
-        location = $3,
-        description = $4,
-        images_url = $5,
-        thumbnail_url = $6,
-        is_featured = $7,
-        updated_at = NOW()
-      WHERE id = $8 RETURNING *`,
-      [
-        city_id,
-        name,
-        location,
-        description,
-        images_url,
-        thumbnail_url,
-        is_featured,
-        id,
-      ]
+      `UPDATE cities SET 
+         name = $1,
+         description = $2,
+         thumbnail_url = $3,
+         updated_at = NOW()
+       WHERE id = $4 RETURNING *`,
+      [name, description, thumbnail_url, id]
     );
+
+    if (result.rows.length === 0) {
+      return new NextResponse("City not found", { status: 404 });
+    }
 
     return NextResponse.json(result.rows[0]);
   } catch (error) {
-    console.error("Error updating tour:", error);
-    return new NextResponse("Failed to update tour", { status: 500 });
+    console.error("Error updating city:", error);
+    return new NextResponse("Failed to update city", { status: 500 });
   }
 }
 
-export async function DELETE(req: Request, context: ParamsContext) {
-  try {
-    const { id } = context.params;
+export async function DELETE(request: Request) {
+  const id = getIdFromUrl(request);
 
-    await pool.query("DELETE FROM tours WHERE id = $1", [id]);
-    return new NextResponse("Tour deleted successfully", { status: 200 });
+  if (!id) {
+    return new NextResponse("City ID is required", { status: 400 });
+  }
+
+  try {
+    await pool.query("DELETE FROM cities WHERE id = $1", [id]);
+    return new NextResponse("City deleted successfully", { status: 200 });
   } catch (error) {
-    console.error("Error deleting tour:", error);
-    return new NextResponse("Failed to delete tour", { status: 500 });
+    console.error("Error deleting city:", error);
+    return new NextResponse("Failed to delete city", { status: 500 });
   }
 }

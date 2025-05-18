@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type User = {
   id?: number;
@@ -48,17 +49,19 @@ export default function AdminHeader() {
     <div className="bg-white relative text-title-primary">
       <div className="border-b">
         <div className="container mx-auto py-1 flex justify-between max-w-7xl px-6">
-          <div className="flex-1 flex gap-4 items-center">
-            <Image
-              src="/assets/images/wonderful-indonesia.png"
-              alt="Wonderful Indonesia"
-              width={100}
-              height={30}
-            />
-            <div className="flex-none font-semibold text-xl text-gray-800">
-              East Java Tourism Admin System
+          <Link href={"/admin"}>
+            <div className="flex-1 flex gap-4 items-center">
+              <Image
+                src="/assets/images/wonderful-indonesia.png"
+                alt="Wonderful Indonesia"
+                width={100}
+                height={30}
+              />
+              <div className="flex-none font-semibold text-xl text-gray-800">
+                East Java Tourism Admin System
+              </div>
             </div>
-          </div>
+          </Link>
           <div className="flex-1 flex flex-row-reverse gap-3 items-center">
             <button
               onClick={handleLogout}

@@ -31,7 +31,6 @@
     "@types/bcrypt": "^5.0.2",
     "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.9",
-    "@types/jwt-decode": "^3.1.0",
     "@types/node": "^20",
     "@types/node-fetch": "^2.6.12",
     "@types/pg": "^8.11.14",

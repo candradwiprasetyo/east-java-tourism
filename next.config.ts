@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
       "spike-vue-horizontal.netlify.app",
     ],
   },
+  experimental: {
+    typedRoutes: false,
+  },
 };
 
 export default nextConfig;

@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const { id } = params;
+function getIdFromUrl(request: Request) {
+  const url = new URL(request.url);
+  const segments = url.pathname.split("/");
+  return segments[segments.length - 1]; // ambil id terakhir dari URL
+}
 
+export async function GET(request: Request) {
+  const id = getIdFromUrl(request);
+
+  if (!id) {
+    return new NextResponse("Tour ID is required", { status: 400 });
+  }
+
+  try {
     const result = await pool.query(
       `SELECT tours.*, cities.name AS city_name
        FROM tours
@@ -27,12 +34,14 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(request: Request) {
+  const id = getIdFromUrl(request);
+
+  if (!id) {
+    return new NextResponse("Tour ID is required", { status: 400 });
+  }
+
   try {
-    const { id } = params;
     const {
       city_id,
       name,
@@ -47,7 +56,7 @@ export async function PUT(
       is_show_on_map,
       tour_category_id,
       map_description,
-    } = await req.json();
+    } = await request.json();
 
     const result = await pool.query(
       `UPDATE tours SET 
@@ -84,6 +93,10 @@ export async function PUT(
       ]
     );
 
+    if (result.rows.length === 0) {
+      return new NextResponse("Tour not found", { status: 404 });
+    }
+
     return NextResponse.json(result.rows[0]);
   } catch (error) {
     console.error("Error updating tour:", error);
@@ -91,13 +104,14 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const { id } = params;
+export async function DELETE(request: Request) {
+  const id = getIdFromUrl(request);
 
+  if (!id) {
+    return new NextResponse("Tour ID is required", { status: 400 });
+  }
+
+  try {
     await pool.query("DELETE FROM tours WHERE id = $1", [id]);
     return new NextResponse("Tour deleted successfully", { status: 200 });
   } catch (error) {
