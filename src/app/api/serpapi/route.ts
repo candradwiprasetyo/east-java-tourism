@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     );
   }
 
-  const apiKey = process.env.SERPAPI_KEY; // Gunakan env, jangan hardcode
+  const apiKey = process.env.SERPAPI_KEY;
   const apiUrl = `https://serpapi.com/search?q=${query}&engine=google&tbm=isch&api_key=${apiKey}`;
 
   try {

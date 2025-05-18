@@ -85,6 +85,10 @@ export async function POST(req: Request) {
 
     Buatkan budget setiap activity seakurat mungkin dengan harga sebenarnya.
 
+    Gunakan bahasa inggris untuk membuat rencana perjalanan ini.
+
+    Gunakan harga mata uang rupiah.
+
     Buatkan jadwal itinerary ini seefektif mungkin dan seefisien mungkin dari sisi jarak dan waktu. 
 
     Tolong buatkan activity yang detail terkait wisata atau tempat yang rekomended di wilayah tersebut beserta alamat lengkapnya. Masing-masing activity harus ada alamat lengkapnya.
@@ -95,7 +99,7 @@ export async function POST(req: Request) {
 
     jika activity adalah accomodation, berikan hotel yang benar-benar valid ada di kota tempat destinasi. Jangan membuat hotel dummy.
 
-    Setiap activity, carikan data google_maps_url yang valid yang bisa dibuka untuk digunakan rute ke lokasi tersebut. Berikan itinerary dengan lokasi yang menyertakan URL Google Maps yang langsung menuju tempat tersebut (bukan shortened link atau embed), cukup berupa https://www.google.com/maps?q=Nama+Tempat atau https://www.google.com/maps/place/Nama+Tempat, agar bisa dibuka dengan mudah.
+    Setiap activity, carikan data google_maps_url yang valid yang bisa dibuka untuk digunakan rute ke lokasi tersebut. Berikan itinerary dengan lokasi yang menyertakan URL Google Maps yang langsung menuju name tempat dan alamat tersebut (bukan shortened link atau embed), cukup berupa https://www.google.com/maps?q=Nama+Tempat+Address atau https://www.google.com/maps/place/Nama+Tempat+Address, agar bisa dibuka dengan mudah.
 
     Buatkan budget setiap hotel seakurat mungkin dengan harga standart dari hotel tersebut.
 
@@ -105,7 +109,6 @@ export async function POST(req: Request) {
 
     Untuk activity, berikan keterangan yang lengkap dengan aktifitas dan juga tempatnya. contohnya: Dinner at the IBC Restaurant Sidoarjo. 
     
-
     Jangan buat activity makan malam di hotel.
     
     Tolong buatkan menjadi format json yang bisa saya gunakan untuk halaman web.
@@ -116,10 +119,39 @@ export async function POST(req: Request) {
     
     berikan jawaban hanya format json tanpa \`json atau \`\`.`;
 
-    const itineraryData = await getItineraryFromAI(message);
-    // console.log(message);
+    const itineraryRaw = await getItineraryFromAI(message);
 
-    // langsung pakai pool.query tanpa connect client manual
+    let itineraryData;
+    try {
+      itineraryData = JSON.parse(itineraryRaw);
+    } catch (error) {
+      return NextResponse.json(
+        { error: "Failed to parse itinerary JSON from AI response" },
+        { status: 500 }
+      );
+    }
+
+    for (const day of itineraryData.days) {
+      for (const activity of day.activities) {
+        const place = activity.place;
+        if (place) {
+          try {
+            const imageRes = await fetch(
+              `${
+                process.env.NEXT_PUBLIC_BASE_URL
+              }/api/serpapi?q=${encodeURIComponent(place)}`
+            );
+            const imageData = await imageRes.json();
+            activity.image_url =
+              imageData?.thumbnail || imageData?.original || "";
+          } catch (error) {
+            console.error(`Failed to fetch image for ${place}:`, error);
+            activity.image_url = "";
+          }
+        }
+      }
+    }
+
     const result = await pool.query(
       `INSERT INTO itineraries (origin, destinations, interests, start_date, end_date, itinerary_data, duration)
        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
@@ -129,7 +161,7 @@ export async function POST(req: Request) {
         interests,
         start_date,
         end_date,
-        itineraryData,
+        JSON.stringify(itineraryData),
         countDay,
       ]
     );

@@ -42,86 +42,88 @@ const Holiday = () => {
   }
 
   return (
-    <div className="p-4 text-title-primary container mx-auto px-40 bg-[#FDEDE3]">
-      <div className="text-[3vw] py-8 text-title-primary text-center">
-        Don’t Miss These{" "}
-        <span className="text-[4vw] font-bold font-satisfy text-title-secondary">
-          2025 Holidays
-        </span>
-      </div>
+    <div className="bg-[#FDEDE3]">
+      <div className="p-4 text-title-primary container mx-auto px-40 ">
+        <div className="text-[3vw] py-8 text-title-primary text-center">
+          Don’t Miss These{" "}
+          <span className="text-[4vw] font-bold font-satisfy text-title-secondary">
+            2025 Holidays
+          </span>
+        </div>
 
-      <div className="flex justify-center space-x-4 mb-8">
-        <button
-          className={`p-2 px-4 rounded-lg ${
-            filter === "all" ? "bg-gray-700 text-white" : "bg-gray-200"
-          }`}
-          onClick={() => setFilter("all")}
-        >
-          All Holidays
-        </button>
-        <button
-          className={`p-2 px-4 rounded-lg ${
-            filter === "cuti" ? "bg-gray-700 text-white" : "bg-gray-200"
-          }`}
-          onClick={() => setFilter("cuti")}
-        >
-          Collective Leave
-        </button>
-        <button
-          className={`p-2 px-4 rounded-lg ${
-            filter === "libur" ? "bg-gray-700 text-white" : "bg-gray-200"
-          }`}
-          onClick={() => setFilter("libur")}
-        >
-          National Holidays
-        </button>
-      </div>
+        <div className="flex justify-center space-x-4 mb-8">
+          <button
+            className={`p-2 px-4 rounded-lg ${
+              filter === "all" ? "bg-gray-700 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setFilter("all")}
+          >
+            All Holidays
+          </button>
+          <button
+            className={`p-2 px-4 rounded-lg ${
+              filter === "cuti" ? "bg-gray-700 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setFilter("cuti")}
+          >
+            Collective Leave
+          </button>
+          <button
+            className={`p-2 px-4 rounded-lg ${
+              filter === "libur" ? "bg-gray-700 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setFilter("libur")}
+          >
+            National Holidays
+          </button>
+        </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 justify-items-center  rounded-3xl">
-        {filteredHolidays.length > 0 ? (
-          filteredHolidays.map((holiday, index) => {
-            const month = new Date(holiday.tanggal).getMonth();
-            const bgColorClass = monthBgColors[month];
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 justify-items-center  rounded-3xl">
+          {filteredHolidays.length > 0 ? (
+            filteredHolidays.map((holiday, index) => {
+              const month = new Date(holiday.tanggal).getMonth();
+              const bgColorClass = monthBgColors[month];
 
-            return (
-              <div
-                key={index}
-                className="p-4 bg-white rounded-2xl flex justify-start items-center flex-col relative overflow-hidden w-full min-h-[150px]"
-                // style={{
-                //   backgroundImage: `url('${
-                //     backgroundImage[Math.floor(Math.random() * 10) + 1]
-                //   }')`,
-                //   backgroundSize: "cover",
-                // }}
-              >
+              return (
                 <div
-                  className={`absolute inset-0 opacity-0 ${bgColorClass}`}
-                ></div>
-                <div className="absolute inset-4">
-                  <div className="text-5xl font-bold text-center leading-none z-1">
-                    <div>
-                      {format(new Date(holiday.tanggal), "d", { locale: id })}
+                  key={index}
+                  className="p-4 bg-white rounded-2xl flex justify-start items-center flex-col relative overflow-hidden w-full min-h-[150px]"
+                  // style={{
+                  //   backgroundImage: `url('${
+                  //     backgroundImage[Math.floor(Math.random() * 10) + 1]
+                  //   }')`,
+                  //   backgroundSize: "cover",
+                  // }}
+                >
+                  <div
+                    className={`absolute inset-0 opacity-0 ${bgColorClass}`}
+                  ></div>
+                  <div className="absolute inset-4">
+                    <div className="text-5xl font-bold text-center leading-none z-1">
+                      <div>
+                        {format(new Date(holiday.tanggal), "d", { locale: id })}
+                      </div>
+                      <div className="uppercase text-sm">
+                        {format(new Date(holiday.tanggal), "MMMM", {
+                          locale: id,
+                        })}
+                      </div>
                     </div>
-                    <div className="uppercase text-sm">
-                      {format(new Date(holiday.tanggal), "MMMM", {
-                        locale: id,
-                      })}
-                    </div>
+                    <p className="text-center mt-2 text-xs opacity-50">
+                      {holiday.keterangan}
+                    </p>
                   </div>
-                  <p className="text-center mt-2 text-xs opacity-50">
-                    {holiday.keterangan}
-                  </p>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <div className="p-4 bg-gray-200 rounded-lg flex justify-center items-center">
-            <span className="text-xl text-gray-600">
-              No holidays found for the selected filter.
-            </span>
-          </div>
-        )}
+              );
+            })
+          ) : (
+            <div className="p-4 bg-gray-200 rounded-lg flex justify-center items-center">
+              <span className="text-xl text-gray-600">
+                No holidays found for the selected filter.
+              </span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

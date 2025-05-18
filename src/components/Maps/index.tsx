@@ -16,7 +16,6 @@ const Maps = () => {
     async function fetchTours() {
       try {
         const tours = await getToursShownOnMap();
-        console.log(tours);
         setTourData(tours);
       } catch (err) {
         console.error("Error loading tours:", err);

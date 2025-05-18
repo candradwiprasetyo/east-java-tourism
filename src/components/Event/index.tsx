@@ -5,21 +5,8 @@ import { useEvent } from "@/hooks/useEvent";
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
-import { useEffect } from "react";
 
 const Event = () => {
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 300);
-    }
-  }, []);
-
   const { events } = useEvent();
 
   const duplicatedEvents = [...events, ...events];

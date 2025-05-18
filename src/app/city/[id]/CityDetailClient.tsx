@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { CityDetail } from "@/types/city";
+import { TourDetail } from "@/types/tour";
 import { getCityDetail } from "@/hooks/useCity";
+import { getToursByCityId } from "@/hooks/useTour";
 import { sanitizeDescription } from "@/lib/sanitize";
 import PageDivider from "@/components/Divider";
 import Link from "next/link";
@@ -15,24 +17,31 @@ interface Props {
 
 export default function CityDetailClient({ cityId }: Props) {
   const [city, setCity] = useState<CityDetail | null>(null);
+  const [tours, setTours] = useState<TourDetail[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadCity() {
+    async function loadCityAndTours() {
       try {
-        const data = await getCityDetail(cityId);
-        setCity(data);
+        const [cityData, toursData] = await Promise.all([
+          getCityDetail(cityId),
+          getToursByCityId(cityId),
+        ]);
+
+        setCity(cityData);
+        setTours(toursData);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching city or tours:", error);
       } finally {
         setLoading(false);
       }
     }
-    loadCity();
+
+    loadCityAndTours();
   }, [cityId]);
 
   if (loading) return <Loading />;
-  if (!city) return <p>Event not found</p>;
+  if (!city) return <p>City not found</p>;
 
   return (
     <>
@@ -55,13 +64,48 @@ export default function CityDetailClient({ cityId }: Props) {
           height={400}
           className="w-full h-auto object-cover rounded-md mb-6"
         />
-
         <div
           className="text-gray-500 prose-custom leading-8"
           dangerouslySetInnerHTML={{
             __html: sanitizeDescription(city?.description),
           }}
-        ></div>
+        />
+
+        {tours.length > 0 && (
+          <div className="mt-10">
+            <h2 className="text-xl font-semibold mb-4 text-title-primary">
+              Tours in {city.name}
+            </h2>
+            <ul className="space-y-4">
+              {tours.map((tour) => (
+                <li
+                  key={tour.id}
+                  className="p-4 rounded-md shadow-sm bg-gray-50"
+                >
+                  <Link href={`/tour/${tour.id}`}>
+                    <div className="flex gap-4">
+                      <div className="flex-none">
+                        <Image
+                          src={tour.thumbnail_url}
+                          alt={tour.name}
+                          width={100}
+                          height={100}
+                          className="w-full h-auto object-cover rounded-md"
+                        />
+                      </div>
+                      <div className="flex-grow">
+                        <p className="mb-2 font-bold">{tour.name}</p>
+                        <p className="text-sm text-gray-600">
+                          {tour.map_description}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <PageDivider direction="up" />
     </>

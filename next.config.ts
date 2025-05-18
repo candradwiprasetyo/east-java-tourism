@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       "images.unsplash.com",
       "res.cloudinary.com",
       "spike-vue-horizontal.netlify.app",
+      "serpapi.com",
     ],
   },
   experimental: {

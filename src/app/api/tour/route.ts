@@ -11,44 +11,64 @@ export async function GET(req: NextRequest) {
     const limit = limitParam ? parseInt(limitParam) : 10;
     const offset = offsetParam ? parseInt(offsetParam) : 0;
 
-    const queryParams: (string | number)[] = [];
-
-    let baseQuery = `
-      FROM tours
-      JOIN cities ON tours.city_id = cities.id
-      JOIN tour_categories ON tour_category_id = toaur_categories.id
-    `;
-
-    const whereConditions: string[] = [];
+    const dataWhere: string[] = [];
+    const dataParams: any[] = [];
 
     if (!isAdmin) {
-      whereConditions.push("tours.is_show_on_map = true");
+      dataWhere.push("tours.is_show_on_map = true");
     }
 
     if (cityIdParam) {
-      whereConditions.push("tours.city_id = $" + (whereConditions.length + 1));
-      queryParams.push(cityIdParam);
+      dataParams.push(parseInt(cityIdParam));
+      dataWhere.push(`tours.city_id = $${dataParams.length}::int`);
     }
 
-    if (whereConditions.length > 0) {
-      baseQuery += " WHERE " + whereConditions.join(" AND ");
+    let baseWhereClause = "";
+    if (dataWhere.length > 0) {
+      baseWhereClause = " WHERE " + dataWhere.join(" AND ");
     }
 
-    queryParams.push(limit);
-    queryParams.push(offset);
+    dataParams.push(limit);
+    dataParams.push(offset);
 
     const dataQuery = `
       SELECT tours.*, cities.name AS city_name, tour_categories.name AS tour_category_name
-      ${baseQuery}
+      FROM tours
+      JOIN cities ON tours.city_id = cities.id
+      JOIN tour_categories ON tours.tour_category_id = tour_categories.id
+      ${baseWhereClause}
       ORDER BY tours.created_at DESC
-      LIMIT $${queryParams.length - 1} OFFSET $${queryParams.length}
+      LIMIT $${dataParams.length - 1} OFFSET $${dataParams.length}
     `;
 
-    const totalQuery = `SELECT COUNT(*) ${baseQuery}`;
+    const totalWhere: string[] = [];
+    const totalParams: any[] = [];
+
+    if (!isAdmin) {
+      totalWhere.push("tours.is_show_on_map = true");
+    }
+
+    if (cityIdParam) {
+      totalParams.push(parseInt(cityIdParam));
+      totalWhere.push(`tours.city_id = $${totalParams.length}::int`);
+    }
+
+    let totalWhereClause = "";
+    if (totalWhere.length > 0) {
+      totalWhereClause = " WHERE " + totalWhere.join(" AND ");
+    }
+
+    const totalQuery = `
+      SELECT COUNT(*) 
+      FROM tours
+      JOIN cities ON tours.city_id = cities.id
+      JOIN tour_categories ON tours.tour_category_id = tour_categories.id
+      ${totalWhereClause}
+    `;
 
     const [dataResult, totalResult] = await Promise.all([
-      pool.query(dataQuery, queryParams),
-      pool.query(totalQuery, cityIdParam ? [cityIdParam] : []),
+      pool.query(dataQuery, dataParams),
+      pool.query(totalQuery, totalParams),
     ]);
 
     return NextResponse.json({
@@ -58,54 +78,5 @@ export async function GET(req: NextRequest) {
   } catch (error) {
     console.error("Error fetching tours:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
-  }
-}
-
-export async function POST(req: Request) {
-  try {
-    const {
-      city_id,
-      tour_category_id,
-      name,
-      address,
-      description,
-      thumbnail_url,
-      images_url,
-      longitude,
-      latitude,
-      map_top,
-      map_left,
-      is_show_on_map,
-      map_description,
-    } = await req.json();
-
-    const result = await pool.query(
-      `INSERT INTO tours 
-        (city_id, tour_category_id, name, address, description, thumbnail_url, images_url, 
-         longitude, latitude, map_top, map_left, is_show_on_map, map_description)
-       VALUES 
-        ($1, $2, $3, $4, $5, $6, $7, 
-         $8, $9, $10, $11, $12, $13) RETURNING *`,
-      [
-        city_id,
-        tour_category_id,
-        name,
-        address,
-        description,
-        thumbnail_url,
-        images_url,
-        longitude,
-        latitude,
-        map_top,
-        map_left,
-        is_show_on_map,
-        map_description,
-      ]
-    );
-
-    return NextResponse.json(result.rows[0]);
-  } catch (error) {
-    console.error("Error creating tour:", error);
-    return new NextResponse("Failed to create tour", { status: 500 });
   }
 }

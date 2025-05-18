@@ -25,6 +25,20 @@ export async function getToursShownOnMap(): Promise<TourDetail[]> {
   return json.data;
 }
 
+export async function getToursByCityId(cityId: string): Promise<TourDetail[]> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tour?city_id=${cityId}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch tours by city_id");
+
+  const json = await res.json();
+  return json.data;
+}
+
 export function useAdminTour(limit = 10, offset = 0) {
   const [tours, setTours] = useState<TourDetail[]>([]);
   const [total, setTotal] = useState(0);

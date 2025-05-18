@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { useRouter, useParams } from "next/navigation";
 import PageDivider from "@/components/Divider";
 import Link from "next/link";
+import Loading from "@/components/Loading";
 import { backgroundImage } from "@/constants/backgroundImage";
 
 interface Itinerary {
@@ -114,7 +115,7 @@ export default function ItineraryPage() {
     }
   }, [id]);
 
-  if (!itinerary) return <div>Loading...</div>;
+  if (!itinerary) return <Loading />;
 
   let itineraryData;
   try {
@@ -239,6 +240,19 @@ export default function ItineraryPage() {
                     <tbody>
                       {day.activities.map((activity, idx) => (
                         <tr key={idx} className="text-sm border-b">
+                          {activity.image_url && (
+                            <td>
+                              <div
+                                className={`w-16 h-16 rounded-lg overflow-hidden bg-cover`}
+                                style={{
+                                  backgroundImage: `url(${activity.image_url})`,
+                                  backgroundSize: "cover",
+                                  backgroundPosition: "center",
+                                }}
+                              ></div>
+                            </td>
+                          )}
+
                           <td valign="top" className="py-3">
                             <div>{activity.activity}</div>
                             <div className="flex items-center gap-1 py-1">
@@ -265,7 +279,7 @@ export default function ItineraryPage() {
                                     className="material-icons text-green-400"
                                     style={{ fontSize: "16px" }}
                                   >
-                                    paid
+                                    payments
                                   </i>
                                   {parseFloat(activity.cost).toLocaleString(
                                     "id-ID",
