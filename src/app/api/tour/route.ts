@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     const offset = offsetParam ? parseInt(offsetParam) : 0;
 
     const dataWhere: string[] = [];
-    const dataParams: any[] = [];
+    const dataParams: number[] = [];
 
     if (!isAdmin) {
       dataWhere.push("tours.is_show_on_map = true");
@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
     `;
 
     const totalWhere: string[] = [];
-    const totalParams: any[] = [];
+    const totalParams: number[] = [];
 
     if (!isAdmin) {
       totalWhere.push("tours.is_show_on_map = true");

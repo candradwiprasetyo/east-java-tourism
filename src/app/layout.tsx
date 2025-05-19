@@ -52,22 +52,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=optional"
           rel="stylesheet"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Geist&display=optional"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Geist+Mono&display=optional"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:400,700&display=optional"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Satisfy&display=optional"
-          rel="stylesheet"
-        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${satisfy.variable} antialiased`}

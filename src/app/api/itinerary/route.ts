@@ -126,7 +126,7 @@ export async function POST(req: Request) {
       itineraryData = JSON.parse(itineraryRaw);
     } catch (error) {
       return NextResponse.json(
-        { error: "Failed to parse itinerary JSON from AI response" },
+        { error: `Failed to parse itinerary JSON from AI response ${error}` },
         { status: 500 }
       );
     }
