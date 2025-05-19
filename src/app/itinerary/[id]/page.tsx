@@ -27,6 +27,7 @@ interface Activity {
   category: string;
   image_url: string;
   google_maps_url: string;
+  place: string;
 }
 
 interface Day {
@@ -240,56 +241,61 @@ export default function ItineraryPage() {
                     <tbody>
                       {day.activities.map((activity, idx) => (
                         <tr key={idx} className="text-sm border-b">
-                          {activity.image_url && (
-                            <td>
-                              <div
-                                className={`w-16 h-16 rounded-lg overflow-hidden bg-cover`}
-                                style={{
-                                  backgroundImage: `url(${activity.image_url})`,
-                                  backgroundSize: "cover",
-                                  backgroundPosition: "center",
-                                }}
-                              ></div>
-                            </td>
-                          )}
-
                           <td valign="top" className="py-3">
-                            <div>{activity.activity}</div>
-                            <div className="flex items-center gap-1 py-1">
-                              <i
-                                className="material-icons text-red-400"
-                                style={{ fontSize: "15px" }}
-                              >
-                                location_on
-                              </i>
-                              <span className="text-gray-400">
-                                <Link
-                                  href={activity.google_maps_url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  {activity.address}
-                                </Link>
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-1 text-green-400 font-bold text-xs">
-                              {parseFloat(activity.cost) > 0 && (
-                                <>
-                                  <i
-                                    className="material-icons text-green-400"
-                                    style={{ fontSize: "16px" }}
-                                  >
-                                    payments
-                                  </i>
-                                  {parseFloat(activity.cost).toLocaleString(
-                                    "id-ID",
-                                    {
-                                      style: "currency",
-                                      currency: "IDR",
-                                    }
-                                  )}
-                                </>
+                            <div className="flex gap-4">
+                              {activity.image_url && (
+                                <div className="flex-none">
+                                  <div
+                                    className={`w-16 h-16 rounded-lg overflow-hidden bg-cover`}
+                                    style={{
+                                      backgroundImage: `url(${activity.image_url})`,
+                                      backgroundSize: "cover",
+                                      backgroundPosition: "center",
+                                    }}
+                                  ></div>
+                                </div>
                               )}
+                              <div className="flex-grow">
+                                <div>
+                                  {activity.activity} - {activity.place}
+                                </div>
+                                <div className="flex items-center gap-1 py-1">
+                                  <i
+                                    className="material-icons text-red-400"
+                                    style={{ fontSize: "15px" }}
+                                  >
+                                    location_on
+                                  </i>
+                                  <span className="text-gray-400">
+                                    <Link
+                                      href={activity.google_maps_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      {activity.address}
+                                    </Link>
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-1 text-green-400 font-bold text-xs">
+                                  {parseFloat(activity.cost) > 0 && (
+                                    <>
+                                      <i
+                                        className="material-icons text-green-400"
+                                        style={{ fontSize: "16px" }}
+                                      >
+                                        payments
+                                      </i>
+                                      {parseFloat(activity.cost).toLocaleString(
+                                        "id-ID",
+                                        {
+                                          style: "currency",
+                                          currency: "IDR",
+                                        }
+                                      )}
+                                    </>
+                                  )}
+                                </div>
+                              </div>
                             </div>
                           </td>
                           <td

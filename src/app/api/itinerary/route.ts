@@ -2,6 +2,24 @@ import { NextResponse } from "next/server";
 import pool from "../../../lib/db";
 import { calculateDayDifference } from "@/lib/dateUtils";
 
+type Activity = {
+  time: string;
+  activity: string;
+  place: string;
+  address: string;
+  category: string;
+  transportation_type: string;
+  cost: string;
+  image_url?: string;
+  google_maps_url: string;
+};
+
+type ItineraryDay = {
+  day: number;
+  date: string;
+  activities: Activity[];
+};
+
 async function getItineraryFromAI(message: string) {
   const apiKey = process.env.OPENAI_API_KEY;
   const openaiResponse = await fetch(
@@ -81,7 +99,6 @@ export async function POST(req: Request) {
         }
       ]
     }
-    
 
     Buatkan budget setiap activity seakurat mungkin dengan harga sebenarnya.
 
@@ -110,12 +127,14 @@ export async function POST(req: Request) {
     Untuk activity, berikan keterangan yang lengkap dengan aktifitas dan juga tempatnya. contohnya: Dinner at the IBC Restaurant Sidoarjo. 
     
     Jangan buat activity makan malam di hotel.
+
+    Jangan membuat activity kembali ke hotel, ketika akan kembali ke kota asal di hari terakhir.
     
-    Tolong buatkan menjadi format json yang bisa saya gunakan untuk halaman web.
+    Buatkan menjadi format json yang bisa saya gunakan untuk halaman web.
 
     Berikan jawaban dalam bahasa inggris.
     
-    Tolong pastikan jawaban yang anda berikan hanya format json yang saya inginkan. jangan ada kata-kata lain yang tidak saya butuhkan.
+    Pastikan jawaban yang anda berikan hanya format json yang saya inginkan. jangan ada kata-kata lain yang tidak saya butuhkan.
     
     berikan jawaban hanya format json tanpa \`json atau \`\`.`;
 
@@ -131,26 +150,30 @@ export async function POST(req: Request) {
       );
     }
 
-    for (const day of itineraryData.days) {
-      for (const activity of day.activities) {
-        const place = activity.place;
-        if (place) {
-          try {
-            const imageRes = await fetch(
-              `${
-                process.env.NEXT_PUBLIC_BASE_URL
-              }/api/serpapi?q=${encodeURIComponent(place)}`
-            );
-            const imageData = await imageRes.json();
-            activity.image_url =
-              imageData?.thumbnail || imageData?.original || "";
-          } catch (error) {
-            console.error(`Failed to fetch image for ${place}:`, error);
-            activity.image_url = "";
-          }
-        }
-      }
-    }
+    await Promise.all(
+      (itineraryData.days as ItineraryDay[]).map(async (day: ItineraryDay) => {
+        await Promise.all(
+          day.activities.map(async (activity: Activity) => {
+            const place = activity.place;
+            if (place) {
+              try {
+                const imageRes = await fetch(
+                  `${
+                    process.env.NEXT_PUBLIC_BASE_URL
+                  }/api/serpapi?q=${encodeURIComponent(place)}`
+                );
+                const imageData = await imageRes.json();
+                activity.image_url =
+                  imageData?.thumbnail || imageData?.original || "";
+              } catch (error) {
+                console.error(`Failed to fetch image for ${place}:`, error);
+                activity.image_url = "";
+              }
+            }
+          })
+        );
+      })
+    );
 
     const result = await pool.query(
       `INSERT INTO itineraries (origin, destinations, interests, start_date, end_date, itinerary_data, duration)
