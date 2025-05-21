@@ -2,17 +2,17 @@ import { NextResponse } from "next/server";
 import pool from "../../../lib/db";
 import { calculateDayDifference } from "@/lib/dateUtils";
 
-type Activity = {
-  time: string;
-  activity: string;
-  place: string;
-  address: string;
-  category: string;
-  transportation_type: string;
-  cost: string;
-  image_url?: string;
-  google_maps_url: string;
-};
+// type Activity = {
+//   time: string;
+//   activity: string;
+//   place: string;
+//   address: string;
+//   category: string;
+//   transportation_type: string;
+//   cost: string;
+//   image_url?: string;
+//   google_maps_url: string;
+// };
 
 // type ItineraryDay = {
 //   day: number;
