@@ -14,11 +14,11 @@ type Activity = {
   google_maps_url: string;
 };
 
-type ItineraryDay = {
-  day: number;
-  date: string;
-  activities: Activity[];
-};
+// type ItineraryDay = {
+//   day: number;
+//   date: string;
+//   activities: Activity[];
+// };
 
 async function getItineraryFromAI(message: string) {
   const apiKey = process.env.OPENAI_API_KEY;

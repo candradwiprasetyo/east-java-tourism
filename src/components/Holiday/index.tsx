@@ -43,7 +43,7 @@ const Holiday = () => {
 
   return (
     <div className="bg-[#FDEDE3]">
-      <div className="p-4 text-title-primary container mx-auto px-40 ">
+      <div className="p-4 text-title-primary container mx-auto xl:px-40 ">
         <div className="text-[3vw] py-8 text-title-primary text-center">
           Don’t Miss These{" "}
           <span className="text-[4vw] font-bold font-satisfy text-title-secondary">

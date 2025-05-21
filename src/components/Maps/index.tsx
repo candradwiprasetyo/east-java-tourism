@@ -48,7 +48,7 @@ const Maps = () => {
             return (
               <div
                 key={loc.id}
-                className="absolute group cursor-pointer"
+                className="absolute group cursor-pointer z-10 hover:z-50"
                 style={{
                   top: `${loc.map_top}%`,
                   left: `${loc.map_left}%`,
@@ -56,7 +56,7 @@ const Maps = () => {
                 }}
               >
                 <div
-                  className="animate-bounce text-red-400"
+                  className="animate-bounce text-red-400 z-10 hover:z-50 relative"
                   style={{
                     fontSize: "60px",
                     animationDelay: randomDelay,
@@ -69,7 +69,13 @@ const Maps = () => {
                 </div>
                 <div
                   onClick={() => router.push(`/tour/${loc.id}`)}
-                  className="absolute hidden group-hover:block bg-gray-700 shadow-lg rounded-xl w-[240px] z-60 text-white -mt-10 overflow-hidden cursor-pointer"
+                  className="absolute opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 
+      group-hover:z-20 transition-all duration-300 ease-out bg-gray-700 shadow-lg 
+      rounded-xl w-[240px] text-white -mt-10 overflow-hidden cursor-pointer
+      pointer-events-none group-hover:pointer-events-auto"
+                  style={{
+                    zIndex: 20,
+                  }}
                 >
                   <div className="relative">
                     <Image

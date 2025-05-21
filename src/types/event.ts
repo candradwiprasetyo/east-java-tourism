@@ -1,6 +1,7 @@
 export interface EventDetail {
   id: number;
   city_id: number;
+  city_name: string;
   name: string;
   description: string;
   start_date: string;

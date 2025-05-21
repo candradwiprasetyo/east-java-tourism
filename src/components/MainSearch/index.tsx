@@ -126,7 +126,7 @@ export default function MainSearch() {
             className="w-full"
           />
         </div>
-        <div className="flex max-w-[80%] container mx-auto items-center relative">
+        <div className="flex xl:max-w-[80%] container mx-auto items-center relative px-4">
           {covers.map((cover) => (
             <div
               key={cover.id}

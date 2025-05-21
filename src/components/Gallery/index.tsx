@@ -22,8 +22,8 @@ const Gallery = () => {
 
   return (
     <div className="bg-white">
-      <div className="container mx-auto px-40 pb-20" id="section-city">
-        <div className="text-[3vw] py-16 text-title-primary px-10 ">
+      <div className="container mx-auto xl:px-32 pb-20" id="section-city">
+        <div className="text-[3vw] py-16 text-title-primary">
           Catch the{" "}
           <span className="text-[4vw] font-bold font-satisfy text-title-secondary ">
             Forecast{" "}
@@ -35,7 +35,10 @@ const Gallery = () => {
         </div>
         <div className="columns-2 md:columns-4 gap-4 space-y-4">
           {cities.map((city) => (
-            <div key={city.id} className="relative overflow-hidden rounded-lg">
+            <div
+              key={city.id}
+              className="relative overflow-hidden rounded-2xl hover:scale-105 transition-transform duration-300 ease-in-out"
+            >
               <Link href={`/city/${city.id}`}>
                 <Image
                   src={city.images_url}
@@ -62,14 +65,14 @@ const Gallery = () => {
                     <div className="text-sm text-white text-center">
                       <i
                         className="material-symbols-outlined text-white mx-auto"
-                        style={{ fontSize: "32px" }}
+                        style={{ fontSize: "28px" }}
                       >
                         {city.weather.icon}
                       </i>
-                      <p className="text-2xl text-white">
+                      <p className="text-xl text-white">
                         {city.weather.temperature}°c
                       </p>
-                      <p className="mt-2">{city.name}</p>
+                      <p className="mt-1">{city.name}</p>
                     </div>
                   )}
                 </div>
