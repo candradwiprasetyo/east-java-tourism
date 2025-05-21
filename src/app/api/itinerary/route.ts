@@ -150,30 +150,30 @@ export async function POST(req: Request) {
       );
     }
 
-    await Promise.all(
-      (itineraryData.days as ItineraryDay[]).map(async (day: ItineraryDay) => {
-        await Promise.all(
-          day.activities.map(async (activity: Activity) => {
-            const place = activity.place;
-            if (place) {
-              try {
-                const imageRes = await fetch(
-                  `${
-                    process.env.NEXT_PUBLIC_BASE_URL
-                  }/api/serpapi?q=${encodeURIComponent(place)}`
-                );
-                const imageData = await imageRes.json();
-                activity.image_url =
-                  imageData?.thumbnail || imageData?.original || "";
-              } catch (error) {
-                console.error(`Failed to fetch image for ${place}:`, error);
-                activity.image_url = "";
-              }
-            }
-          })
-        );
-      })
-    );
+    // await Promise.all(
+    //   (itineraryData.days as ItineraryDay[]).map(async (day: ItineraryDay) => {
+    //     await Promise.all(
+    //       day.activities.map(async (activity: Activity) => {
+    //         const place = activity.place;
+    //         if (place) {
+    //           try {
+    //             const imageRes = await fetch(
+    //               `${
+    //                 process.env.NEXT_PUBLIC_BASE_URL
+    //               }/api/serpapi?q=${encodeURIComponent(place)}`
+    //             );
+    //             const imageData = await imageRes.json();
+    //             activity.image_url =
+    //               imageData?.thumbnail || imageData?.original || "";
+    //           } catch (error) {
+    //             console.error(`Failed to fetch image for ${place}:`, error);
+    //             activity.image_url = "";
+    //           }
+    //         }
+    //       })
+    //     );
+    //   })
+    // );
 
     const result = await pool.query(
       `INSERT INTO itineraries (origin, destinations, interests, start_date, end_date, itinerary_data, duration)
