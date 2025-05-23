@@ -27,7 +27,7 @@ export async function generateMetadata({
   const destination = itinerary.destinations?.join(", ") || "Travel Itinerary";
   const interests = itinerary.interests?.join(", ");
   const title = `Trip from ${itinerary.origin} to ${destination} East Java`;
-  const description = `Explore your itinerary with interest in ${interests}. Plan your journey from ${itinerary.origin}.`;
+  const description = `Explore your itinerary with interest in ${interests}. Plan your journey from ${itinerary.origin} to ${destination} East Java.`;
 
   return {
     title,

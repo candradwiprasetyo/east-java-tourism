@@ -70,7 +70,7 @@ export default function CityDetailClient({ cityId }: Props) {
               alt={city.name}
               width={800}
               height={400}
-              className="w-full h-auto object-cover  mb-6 overflow-hidden"
+              className="w-full h-auto object-cover  mb-6 overflow-hidden rounded-2xl"
             />
 
             <div className="absolute top-4 right-4 text-white p-5 rounded-xl bg-[#2a5475] opacity-80">

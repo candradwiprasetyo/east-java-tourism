@@ -41,7 +41,7 @@ const Event = () => {
                 ></Image>
                 <div className="absolute w-full bottom-0 bg-gradient-to-t from-[#2a5475] to-transparent pointer-events-none h-full"></div>
                 <div className={`absolute w-full bottom-0 text-left p-4`}>
-                  <span className="text-[9px] font-bold px-3 py-1 bg-green-600 rounded-full mb-2 text-white opacity-70">
+                  <span className="text-[9px] font-bold px-3 py-1 bg-green-600 rounded-full mb-2 text-white">
                     {format(new Date(event.start_date), "dd MMMM yyyy")}
                   </span>
                   <div className="text-[12px] my-2">{event.name}</div>

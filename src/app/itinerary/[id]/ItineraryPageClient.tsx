@@ -7,6 +7,8 @@ import Link from "next/link";
 import Loading from "@/components/Loading";
 import { backgroundImage } from "@/constants/backgroundImage";
 import { Itinerary, Day, Budget } from "@/types/itinerary";
+import Image from "next/image";
+import ShareButton from "@/components/ShareButton";
 
 function calculateBudgetFromActivities(days: Day[]): Budget {
   const budget: Budget = {
@@ -85,7 +87,7 @@ export default function ItineraryPageClient({
     <>
       <PageDivider />
       <div className="bg-white">
-        <div className="text-title-primary container mx-auto pb-6 px-4 xl:px-40">
+        <div className="text-title-primary container mx-auto pb-6 px-4 xl:max-w-5xl">
           <div className="flex items-center">
             <div className="w-1/2">
               <h1 className="text-[3vw] pb-6">
@@ -114,17 +116,7 @@ export default function ItineraryPageClient({
                   download
                 </i>
               </button>
-              <button
-                onClick={backToMainSearch}
-                className="bg-blue-300 float-right px-4 text-white pt-4 pb-3 font-bold rounded-xl text-sm mr-2 hidden"
-              >
-                <i
-                  className="material-icons text-white"
-                  style={{ fontSize: "20px" }}
-                >
-                  share
-                </i>
-              </button>
+              <ShareButton />
             </div>
           </div>
 
@@ -186,19 +178,20 @@ export default function ItineraryPageClient({
                       {day.activities.map((activity, idx) => (
                         <tr key={idx} className="text-sm border-b">
                           <td valign="top" className="py-3">
-                            <div className="flex gap-4">
-                              {activity.image_url && (
-                                <div className="flex-none">
-                                  <div
-                                    className={`w-16 h-16 rounded-lg overflow-hidden bg-cover`}
-                                    style={{
-                                      backgroundImage: `url(${activity.image_url})`,
-                                      backgroundSize: "cover",
-                                      backgroundPosition: "center",
-                                    }}
-                                  ></div>
+                            <div className="flex gap-4 items-center">
+                              <div className="flex-none">
+                                <div
+                                  className={`w-12 h-12 rounded-lg overflow-hidden bg-cover opacity-80`}
+                                >
+                                  <Image
+                                    src={`/assets/images/${activity.category}.png`}
+                                    width={200}
+                                    height={200}
+                                    alt={activity.category}
+                                  />
                                 </div>
-                              )}
+                              </div>
+
                               <div className="flex-grow">
                                 <div>
                                   {activity.activity} - {activity.place}
