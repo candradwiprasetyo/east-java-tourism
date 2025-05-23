@@ -104,13 +104,15 @@ export async function POST(req: Request) {
 
     Gunakan bahasa inggris untuk membuat rencana perjalanan ini.
 
-    Gunakan harga mata uang rupiah.
+    Gunakan harga mata uang rupiah, bukan dollar.
+
+    Untuk cost, gunakan format tanpa tanda apapun misal 10000 bukan 10,000 atau 10.000.
 
     Buatkan jadwal itinerary ini seefektif mungkin dan seefisien mungkin dari sisi jarak dan waktu. 
 
     Tolong buatkan activity yang detail terkait wisata atau tempat yang rekomended di wilayah tersebut beserta alamat lengkapnya. Masing-masing activity harus ada alamat lengkapnya.
     
-    Untuk category transportation di awal dan akhir perjalanan, usahakan menggunakan moda transportasi pesawat. Jika tidak memungkinkan, maka gunakan moda transportasi kereta api. 
+    Untuk category transportation di awal dan akhir perjalanan, gunakan moda transportasi pesawat. Jika tidak memungkinkan, maka gunakan moda transportasi kereta api atau bus. 
 
     Untuk category transportation, jelaskan juga menggunakan moda transportasi apa seperti kereta atau pesawat atau bus dengan detail nama kereta api atau maskapai.
 

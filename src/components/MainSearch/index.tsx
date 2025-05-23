@@ -125,7 +125,11 @@ export default function MainSearch() {
     if (typeof window === "undefined") return;
 
     const isAnyModalOpen =
-      isModalLocationOpen || isModalInterestOpen || isModalCalendarOpen;
+      isModalLocationOpen ||
+      isModalInterestOpen ||
+      isModalCalendarOpen ||
+      isModalValidationOpen ||
+      loading;
 
     if (isAnyModalOpen) {
       document.body.style.overflow = "hidden";
@@ -136,7 +140,13 @@ export default function MainSearch() {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isModalLocationOpen, isModalInterestOpen, isModalCalendarOpen]);
+  }, [
+    isModalLocationOpen,
+    isModalInterestOpen,
+    isModalCalendarOpen,
+    isModalValidationOpen,
+    loading,
+  ]);
 
   return (
     <>

@@ -196,9 +196,9 @@ export default function ItineraryPageClient({
                                 <div>
                                   {activity.activity} - {activity.place}
                                 </div>
-                                <div className="flex items-center gap-1 py-1">
+                                <div className="flex items-start gap-1 py-1">
                                   <i
-                                    className="material-icons text-red-400"
+                                    className="material-icons text-red-400 mt-1"
                                     style={{ fontSize: "15px" }}
                                   >
                                     location_on
