@@ -15,5 +15,9 @@ export interface CityDetail {
     weathercode: number;
     time: string;
     icon: string;
+    humidity?: number;
+    precipitation?: number;
+    cloudcover?: number;
+    uv_index?: number;
   };
 }
