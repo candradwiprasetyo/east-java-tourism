@@ -48,7 +48,7 @@ export default function CityDetailClient({ cityId }: Props) {
   return (
     <div className="absolute h-full w-full">
       <div
-        className="absolute h-full w-full bg-cover opacity-50"
+        className="absolute h-full w-full bg-cover opacity-20"
         style={{ backgroundImage: `url("${city.images_url}")` }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white"></div>
@@ -72,7 +72,9 @@ export default function CityDetailClient({ cityId }: Props) {
               height={400}
               className="w-full h-auto object-cover  mb-6 overflow-hidden"
             />
-            <div className="absolute top-4 right-4 bg-gradient-to-t from-black to-transparent text-white p-5 rounded-xl">
+
+            <div className="absolute top-4 right-4 text-white p-5 rounded-xl bg-[#2a5475] opacity-80">
+              <div className="absolute inset-0"></div>
               {city.weather && (
                 <div className="flex items-center gap-4 justify-between">
                   <div className="text-xs">
@@ -128,7 +130,7 @@ export default function CityDetailClient({ cityId }: Props) {
                         height={256}
                         className="h-full w-auto object-cover"
                       ></Image>
-                      <div className="absolute w-full bottom-0 bg-gradient-to-t from-black to-transparent pointer-events-none h-full"></div>
+                      <div className="absolute w-full bottom-0 bg-gradient-to-t from-[#2a5475] to-transparent pointer-events-none h-full"></div>
                       <div className={`absolute w-full bottom-0 text-left p-4`}>
                         <div className="text-[12px] my-2">{tour.name}</div>
                         <div className="flex items-center gap-1 text-[10px]">
