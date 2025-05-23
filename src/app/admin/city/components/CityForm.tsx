@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { City } from "@/hooks/useCity";
+import { CityDetail } from "@/types/city";
 import Link from "next/link";
 import Image from "next/image";
 import { useAdminCity } from "@/hooks/useCity";
@@ -22,7 +22,7 @@ export default function CityForm({ editCityId, onFinish }: Props) {
   const { getCityById } = useAdminCity();
 
   const [formData, setFormData] = useState<
-    Omit<City, "id" | "created_at" | "updated_at" | "weather">
+    Omit<CityDetail, "id" | "created_at" | "updated_at" | "weather">
   >({
     name: "",
     latitude: 0,
