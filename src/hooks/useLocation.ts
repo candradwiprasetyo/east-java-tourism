@@ -26,7 +26,7 @@ const useLocation = () => {
             setUserCity(data.results[0]?.components.city || "Unknown");
           } catch (error) {
             console.error("Failed to fetch city from coordinates:", error);
-            fetchLocationByIP(); // fallback
+            fetchLocationByIP();
           }
         },
         (error) => {
@@ -34,7 +34,7 @@ const useLocation = () => {
             "Geolocation failed or denied, using IP:",
             error.message
           );
-          fetchLocationByIP(); // fallback
+          fetchLocationByIP();
         }
       );
     } else {

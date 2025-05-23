@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
         Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "deepseek-chat", // Pastikan model yang digunakan benar
-        messages: [{ role: "user", content: prompt }], // Format yang benar
+        model: "deepseek-chat",
+        messages: [{ role: "user", content: prompt }],
       }),
     });
 

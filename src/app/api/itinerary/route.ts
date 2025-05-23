@@ -224,7 +224,6 @@ export async function GET(req: Request) {
       );
     }
 
-    // langsung pool.query tanpa client connect/release
     const result = await pool.query("SELECT * FROM itineraries WHERE id = $1", [
       id,
     ]);

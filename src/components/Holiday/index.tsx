@@ -4,21 +4,20 @@ import React, { useState } from "react";
 import useHoliday from "../../hooks/useHoliday";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
-// import { backgroundImage } from "@/constants/backgroundImage";
 
 const monthBgColors: { [key: number]: string } = {
-  0: "bg-red-50", // Januari
-  1: "bg-blue-50", // Februari
-  2: "bg-green-50", // Maret
-  3: "bg-yellow-50", // April
-  4: "bg-pink-50", // Mei
-  5: "bg-purple-50", // Juni
-  6: "bg-indigo-50", // Juli
-  7: "bg-teal-50", // Agustus
-  8: "bg-orange-50", // September
-  9: "bg-emerald-50", // Oktober
-  10: "bg-amber-50", // November
-  11: "bg-rose-50", // Desember
+  0: "bg-red-50",
+  1: "bg-blue-50",
+  2: "bg-green-50",
+  3: "bg-yellow-50",
+  4: "bg-pink-50",
+  5: "bg-purple-50",
+  6: "bg-indigo-50",
+  7: "bg-teal-50",
+  8: "bg-orange-50",
+  9: "bg-emerald-50",
+  10: "bg-amber-50",
+  11: "bg-rose-50",
 };
 
 const Holiday = () => {
@@ -88,12 +87,6 @@ const Holiday = () => {
                 <div
                   key={index}
                   className="p-4 bg-white rounded-2xl flex justify-start items-center flex-col relative overflow-hidden w-full min-h-[150px]"
-                  // style={{
-                  //   backgroundImage: `url('${
-                  //     backgroundImage[Math.floor(Math.random() * 10) + 1]
-                  //   }')`,
-                  //   backgroundSize: "cover",
-                  // }}
                 >
                   <div
                     className={`absolute inset-0 opacity-0 ${bgColorClass}`}

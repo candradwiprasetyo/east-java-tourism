@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalLocation from "@/components/ModalLocation";
 import ModalInterest from "@/components/ModalInterest";
 import ModalCalendar from "@/components/ModalCalendar";
@@ -112,7 +112,7 @@ export default function MainSearch() {
       }
       params.append("from", selectedDate.from.toISOString());
       params.append("to", selectedDate.to.toISOString());
-      // setLoading(false);
+
       router.push(`/itinerary/${data.id}`);
     } catch (err) {
       setLoading(false);
@@ -120,6 +120,23 @@ export default function MainSearch() {
       alert("Failed to save itinerary. Please try again.");
     }
   };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const isAnyModalOpen =
+      isModalLocationOpen || isModalInterestOpen || isModalCalendarOpen;
+
+    if (isAnyModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isModalLocationOpen, isModalInterestOpen, isModalCalendarOpen]);
 
   return (
     <>

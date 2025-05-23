@@ -42,7 +42,7 @@ const Maps = () => {
         color="white"
         customClass="absolute top-0 z-0"
       />
-      <div className="w-full relative z-50 relative min-h-screen">
+      <div className="w-full relative z-20 relative min-h-screen">
         <div className="absolute aspect-video my-auto inset-0 flex items-center justify-center mx-auto w-full md:w-[800px] xl:w-[55vw] px-4">
           <Image
             src="/assets/images/maps.png"
@@ -59,7 +59,7 @@ const Maps = () => {
               return (
                 <div
                   key={loc.id}
-                  className="absolute group cursor-pointer z-10 hover:z-50"
+                  className="absolute group cursor-pointer z-10 hover:z-20"
                   style={{
                     top: `${loc.map_top}%`,
                     left: `${loc.map_left}%`,
@@ -67,7 +67,7 @@ const Maps = () => {
                   }}
                 >
                   <div
-                    className="animate-bounce text-red-400 z-10 hover:z-50 relative"
+                    className="animate-bounce text-red-400 z-10 hover:z-20 relative"
                     style={{
                       animationDelay: randomDelay,
                       animationDuration: "1.5s",

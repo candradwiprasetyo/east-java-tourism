@@ -45,7 +45,6 @@ export function useAdminTour(limit = 10, offset = 0) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  // useCallback untuk fetchTours agar stabil referensi dan bisa dipakai di useEffect dengan dependency
   const fetchTours = useCallback(async () => {
     setLoading(true);
     try {

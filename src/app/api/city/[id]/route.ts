@@ -36,12 +36,7 @@ export async function PUT(request: Request) {
   }
 
   try {
-    const {
-      name,
-      description,
-      thumbnail_url,
-      // properti lain jika ada
-    } = await request.json();
+    const { name, description, thumbnail_url } = await request.json();
 
     const result = await pool.query(
       `UPDATE cities SET 

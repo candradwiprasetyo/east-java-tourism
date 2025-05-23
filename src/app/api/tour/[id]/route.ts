@@ -4,7 +4,7 @@ import pool from "@/lib/db";
 function getIdFromUrl(request: Request) {
   const url = new URL(request.url);
   const segments = url.pathname.split("/");
-  return segments[segments.length - 1]; // ambil id terakhir dari URL
+  return segments[segments.length - 1];
 }
 
 export async function GET(request: Request) {

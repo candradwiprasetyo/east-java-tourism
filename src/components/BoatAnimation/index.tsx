@@ -3,16 +3,9 @@
 import { useEffect, useState } from "react";
 
 const pathOptions = [
-  // Jalur vertikal ke kiri dari kotak
   "M 300,0 C 300,400 300,800 300,2000",
-
-  // Jalur zig-zag ke kiri
   "M 100,0 C 200,600 100,1000 200,2000",
-
-  // Jalur horizontal dari kanan ke kiri, tapi lebih tinggi dari area kotak
   "M 2000,150 C 1600,50 1000,250 -100,150",
-
-  // Jalur horizontal dari kiri ke kanan, tapi lebih bawah dari kotak
   "M 0,650 C 600,800 1200,700 2000,600",
 ];
 

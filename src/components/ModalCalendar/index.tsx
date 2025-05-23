@@ -39,7 +39,6 @@ const ModalCalendar = ({
 
   if (!isOpen) return null;
 
-  // Filter libur untuk bulan yang sedang ditampilkan
   const holidaysInCurrentMonth = holidays.filter((holiday) => {
     const date = new Date(holiday.tanggal);
     return (
@@ -51,11 +50,11 @@ const ModalCalendar = ({
   return (
     <>
       <div
-        className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-10"
+        className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-30"
         onClick={onClose}
       ></div>
       <div
-        className="z-20 bg-white p-6 rounded-2xl w-[700px] text-title-primary fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden"
+        className="z-40 bg-white p-6 rounded-2xl w-[700px] text-title-primary fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold mb-4">When Will the Journey Begin?</h2>

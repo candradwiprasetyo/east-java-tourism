@@ -79,7 +79,7 @@ export default function ItineraryPage() {
         const { done, value } = await reader.read();
         if (done) break;
 
-        const chunk = decoder.decode(value); // decode value sebagai teks
+        const chunk = decoder.decode(value);
         fullText += chunk;
         setStreamedText((prev) => prev + chunk);
       }

@@ -1,4 +1,3 @@
-// app/chat-openai/page.tsx
 "use client";
 
 import { useState } from "react";
