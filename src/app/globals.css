@@ -39,12 +39,27 @@ body {
   background-repeat: no-repeat;
 }
 
+.bg-sea {
+  background: url("/assets/images/maps-sea.png");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .bg-primary {
   background-color: #fcece2;
 }
 
 .bg-ocean {
-  background: linear-gradient(-45deg, #d6f0f9, #98f3c4, #b3e6f9, #4cddbb);
+  background: linear-gradient(
+    -45deg,
+    #d6f0f9,
+    #98f3c4,
+    #b3e6f9,
+    #4cddbb,
+    #d3fc87,
+    #e1f69d
+  );
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 }
@@ -101,5 +116,107 @@ body {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.animate-fade-in-out {
+  animation: fadeInOut 5s ease-in-out infinite;
+}
+
+.animation-delay-0 {
+  animation-delay: 0s;
+}
+.animation-delay-1 {
+  animation-delay: 1s;
+}
+.animation-delay-2 {
+  animation-delay: 2s;
+}
+.animation-delay-3 {
+  animation-delay: 3s;
+}
+
+@keyframes sail-curve {
+  0% {
+    offset-distance: 0%;
+    -webkit-offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+    -webkit-offset-distance: 100%;
+  }
+}
+
+.sail-curve {
+  animation: sail-curve 60s linear forwards;
+  -webkit-animation: sail-curve 60s linear forwards;
+  offset-rotate: auto;
+  -webkit-offset-rotate: auto;
+}
+
+.sail-curve-2 {
+  animation: sail-curve 55s linear forwards;
+  -webkit-animation: sail-curve 55s linear forwards;
+  offset-rotate: auto;
+  -webkit-offset-rotate: auto;
+}
+
+.wave {
+  width: 5px;
+  height: 1px;
+  position: absolute;
+  margin-top: 18px;
+  margin-left: -18px;
+  opacity: 0.5;
+}
+
+.ripple {
+  border-top-left-radius: 100%;
+  border-bottom-left-radius: 100%;
+  position: absolute;
+  width: 20px;
+  height: 8px;
+}
+.ripple:nth-child(1) {
+  animation: ripple 2s 0s infinite;
+  -webkit-animation: ripple 2s 0s infinite;
+}
+.ripple:nth-child(2) {
+  animation: ripple 1.5s 0s infinite;
+  -webkit-animation: ripple 1.5s 0s infinite;
+}
+.ripple:nth-child(3) {
+  animation: ripple 1s 0s infinite;
+  -webkit-animation: ripple 1s 0s infinite;
+}
+.ripple:nth-child(4) {
+  animation: ripple 0.5s 0s infinite;
+  -webkit-animation: ripple 0.5s 0s infinite;
+}
+.ripple:nth-child(5) {
+  animation: ripple 0.2s 0s infinite;
+  -webkit-animation: ripple 0.2s 0s infinite;
+}
+
+@keyframes ripple {
+  0%,
+  100% {
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 40px 10px rgba(209, 236, 248, 0.245);
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    background: rgba(90, 166, 238, 0.1);
+    box-shadow: 0 0 40px 20px rgba(209, 238, 248, 0.2);
   }
 }

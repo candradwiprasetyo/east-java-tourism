@@ -43,7 +43,7 @@ export default function TourDetailClient({ tourId }: Props) {
         </h1>
         <div className="text-sm text-gray-500 mb-4">{tour?.address}</div>
         <Link
-          href="/"
+          href="/#section-map"
           className="inline-block px-4 py-2 bg-blue-400 text-white rounded-full hover:bg-blue-700 transition mb-4"
           scroll={true}
         >

@@ -48,7 +48,7 @@ const ModalInterest = ({
         </div>
         <button
           onClick={onClose}
-          className="bg-green-400 text-white p-3 rounded-lg mt-8 block mx-auto"
+          className="bg-green-400 text-white py-3 px-6 rounded-full mt-8 block mx-auto"
         >
           Pick It
         </button>

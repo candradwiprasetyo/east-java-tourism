@@ -76,7 +76,7 @@ const ModalLocation = ({
         </div>
         <button
           onClick={onClose}
-          className="bg-green-400 text-white p-3 rounded-lg mt-4 block mx-auto mb-10"
+          className="bg-green-400 text-white py-3 px-6 rounded-full mt-4 block mx-auto mb-10"
         >
           Pick It
         </button>

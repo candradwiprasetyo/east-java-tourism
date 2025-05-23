@@ -12,10 +12,13 @@ import { useRouter } from "next/navigation";
 import useLocation from "@/hooks/useLocation";
 import { coversData } from "@/constants/coversData";
 import { calculateDayDifference } from "@/lib/dateUtils";
+import ModalValidation from "../ModalValidation";
 
 export default function MainSearch() {
   const router = useRouter();
   const [isModalLocationOpen, setIsModalLocationOpen] =
+    useState<boolean>(false);
+  const [isModalValidationOpen, setIsModalValidationOpen] =
     useState<boolean>(false);
   const [selectedCities, setSelectedCities] = useState<string[]>([]);
   const [isModalInterestOpen, setIsModalInterestOpen] =
@@ -43,6 +46,10 @@ export default function MainSearch() {
     setIsModalCalendarOpen(!isModalCalendarOpen);
   };
 
+  const toggleModalValidation = () => {
+    setIsModalValidationOpen(!isModalValidationOpen);
+  };
+
   const handleCitySelection = (city: string) => {
     setSelectedCities((prevState) =>
       prevState.includes(city)
@@ -65,7 +72,7 @@ export default function MainSearch() {
 
   const handleExplore = async () => {
     if (!selectedDate?.from || !selectedDate?.to) {
-      alert("Please select a date range");
+      setIsModalValidationOpen(true);
       return;
     }
 
@@ -255,6 +262,12 @@ export default function MainSearch() {
         isOpen={isModalCalendarOpen}
         onClose={toggleModalCalendar}
         onCalendarSelect={handleCalendarSelect}
+      />
+
+      <ModalValidation
+        isOpen={isModalValidationOpen}
+        onClose={toggleModalValidation}
+        content="Please select a date range first"
       />
 
       {loading && <ModalLoading />}
