@@ -1,7 +1,6 @@
 "use client";
 
 import clsx from "clsx";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import ModalLocation from "@/components/ModalLocation";
 import ModalInterest from "@/components/ModalInterest";
@@ -151,7 +150,7 @@ export default function MainSearch() {
   return (
     <>
       <div className="flex items-center h-screen relative">
-        <div className="absolute w-[12vw] h-[4vw] mx-auto left-0 right-0 top-0">
+        {/* <div className="absolute w-[12vw] h-[4vw] mx-auto left-0 right-0 top-0">
           <Image
             src="/assets/images/wonderful-indonesia.png"
             alt="Wonderful Indonesia"
@@ -159,7 +158,8 @@ export default function MainSearch() {
             height={100}
             className="w-full"
           />
-        </div>
+        </div> */}
+        <div className="hidden">{userCity}</div>
         <div className="flex xl:max-w-[80%] container mx-auto items-center relative px-4">
           {covers.map((cover) => (
             <div
