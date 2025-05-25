@@ -23,7 +23,7 @@ const Gallery = () => {
   return (
     <div className="bg-white">
       <div className="container mx-auto xl:px-32 pb-20" id="section-city">
-        <div className="text-[3vw] py-16 text-title-primary">
+        <div className="text-[3vw] py-16 text-title-primary text-center">
           Catch the{" "}
           <span className="text-[4vw] font-bold font-satisfy text-title-secondary ">
             Forecast{" "}

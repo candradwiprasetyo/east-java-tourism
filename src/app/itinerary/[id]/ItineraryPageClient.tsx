@@ -146,6 +146,18 @@ export default function ItineraryPageClient({
             </div>
           </div>
 
+          {itineraryData.recommendation && (
+            <div className="mt-10 p-6 text-sm leading-7 relative text-title-primary bg-yellow-50 text-center px-20 text-center rounded-3xl">
+              <div className="w-16 h-16 absolute -left-4 -top-6 text-7xl font-satisfy p-3 rounded-full bg-gray-100 border-[6px] border-white">
+                &#8220;
+              </div>
+              {itineraryData.recommendation}
+              {/* <div className="w-12 h-12 absolute -right-4 -bottom-5 text-7xl font-satisfy p-2 rounded-full bg-white border-[6px] border-white">
+                &rdquo;
+              </div> */}
+            </div>
+          )}
+
           <div className="pt-6">
             {itineraryData.days.map((day: Day, index: number) => (
               <div
@@ -181,7 +193,7 @@ export default function ItineraryPageClient({
                             <div className="flex gap-4 items-center">
                               <div className="flex-none">
                                 <div
-                                  className={`w-12 h-12 rounded-lg overflow-hidden bg-cover opacity-80`}
+                                  className={`w-12 h-12 rounded-lg overflow-hidden bg-cover`}
                                 >
                                   <Image
                                     src={`/assets/images/${activity.category}.png`}
@@ -196,24 +208,7 @@ export default function ItineraryPageClient({
                                 <div>
                                   {activity.activity} - {activity.place}
                                 </div>
-                                <div className="flex items-start gap-1 py-1">
-                                  <i
-                                    className="material-icons text-red-400 mt-1"
-                                    style={{ fontSize: "15px" }}
-                                  >
-                                    location_on
-                                  </i>
-                                  <span className="text-gray-400">
-                                    <Link
-                                      href={activity.google_maps_url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      {activity.address}
-                                    </Link>
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-1 text-green-400 font-bold text-xs">
+                                <div className="flex items-center gap-1 text-green-400 font-bold text-xs mt-1">
                                   {parseFloat(activity.cost) > 0 && (
                                     <>
                                       <i
@@ -231,6 +226,23 @@ export default function ItineraryPageClient({
                                       )}
                                     </>
                                   )}
+                                </div>
+                                <div className="flex items-start gap-1 py-1">
+                                  <i
+                                    className="material-icons text-red-400 mt-[3px]"
+                                    style={{ fontSize: "14px" }}
+                                  >
+                                    location_on
+                                  </i>
+                                  <span className="text-gray-400 text-xs">
+                                    <Link
+                                      href={activity.google_maps_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      {activity.address}
+                                    </Link>
+                                  </span>
                                 </div>
                               </div>
                             </div>

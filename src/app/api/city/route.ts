@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
       ? "FROM cities"
       : "FROM cities WHERE is_show_on_gallery = true";
 
-    const dataQuery = `SELECT * ${baseQuery} ORDER BY created_at DESC LIMIT $1 OFFSET $2`;
+    const dataQuery = `SELECT * ${baseQuery} ORDER BY id ASC LIMIT $1 OFFSET $2`;
     const totalQuery = `SELECT COUNT(*) ${baseQuery}`;
 
     const [dataResult, totalResult] = await Promise.all([

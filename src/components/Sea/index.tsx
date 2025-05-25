@@ -22,6 +22,7 @@ export default function Sea() {
         <PageDivider
           direction="up"
           background="transparent"
+          color="white"
           customClass="absolute bottom-0 z-10"
         />
 

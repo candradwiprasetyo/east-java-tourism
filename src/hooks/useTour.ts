@@ -27,7 +27,7 @@ export async function getToursShownOnMap(): Promise<TourDetail[]> {
 
 export async function getToursByCityId(cityId: string): Promise<TourDetail[]> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tour?city_id=${cityId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tour?city_id=${cityId}&limit=4`,
     {
       cache: "no-store",
     }

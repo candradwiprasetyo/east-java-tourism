@@ -43,7 +43,7 @@ export function useCity() {
   useEffect(() => {
     async function fetchCities() {
       try {
-        const res = await fetch("/api/city?limit=15");
+        const res = await fetch("/api/city?limit=16");
         if (!res.ok) throw new Error("Failed to fetch cities");
         const json = await res.json();
         const data: CityDetail[] = json.data;

@@ -2,17 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import PageDivider from "../Divider";
 import { TourDetail } from "@/types/tour";
 import { getToursShownOnMap } from "@/hooks/useTour";
 import BoatAnimation from "@/components/BoatAnimation";
 import BoatAnimation2 from "@/components/BoatAnimation2";
+import Link from "next/link";
 
 const Maps = () => {
   const [tourData, setTourData] = useState<TourDetail[]>([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
     async function fetchTours() {
@@ -77,30 +76,37 @@ const Maps = () => {
                       location_on
                     </i>
                   </div>
-                  <div
-                    onClick={() => router.push(`/tour/${loc.id}`)}
-                    className="absolute opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:z-20 transition-all duration-300 ease-out bg-gray-700 shadow-lg rounded-xl w-[240px] text-white -mt-4 overflow-hidden cursor-pointer pointer-events-none group-hover:pointer-events-auto"
-                    style={{
-                      zIndex: 20,
-                    }}
+                  <Link
+                    href={`/tour/${loc.id}`}
+                    key={`${loc.id}`}
+                    className="w-1/4"
                   >
-                    <div className="relative">
+                    <div
+                      className="absolute opacity-0 scale-95 h-64 group-hover:opacity-100 group-hover:scale-100 group-hover:z-[100] transition-all duration-300 ease-out bg-gray-700 shadow-lg rounded-xl w-[200px] text-white -mt-4 overflow-hidden cursor-pointer pointer-events-none group-hover:pointer-events-auto"
+                      style={{
+                        zIndex: 100,
+                      }}
+                    >
                       <Image
                         src={loc.thumbnail_url}
                         alt={loc.name}
                         width={300}
                         height={256}
                         className="h-full w-auto object-cover"
-                      />
-                      <div className="text-xs flex items-center mt-2 gap-1 font-bold absolute -bottom-4 right-3 bg-[#eea5a0] px-4 py-2 rounded-full">
-                        {loc.city_name}
+                      ></Image>
+                      <div className="absolute w-full bottom-0 bg-gradient-to-t from-[#2a5475] to-transparent pointer-events-none h-full"></div>
+                      <div className={`absolute w-full bottom-0 text-left p-4`}>
+                        <div className="text-[12px] my-2 font-bold">
+                          {loc.name}
+                        </div>
+                        <div className="flex items-center gap-1 text-[10px] ">
+                          <span className="opacity-70 line-clamp-3">
+                            {loc.map_description}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <div className="px-4 py-6">
-                      <h4 className="font-bold text-sm mb-2">{loc.name}</h4>
-                      <p className="text-xs text-gray-300">{loc.description}</p>
-                    </div>
-                  </div>
+                  </Link>
                 </div>
               );
             })}

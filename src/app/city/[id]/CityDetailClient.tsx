@@ -64,16 +64,11 @@ export default function CityDetailClient({ cityId }: Props) {
           >
             Back
           </Link>
-          <div className="aspect-video overflow-hidden relative rounded-xl">
-            <Image
-              src={city.images_url}
-              alt={city.name}
-              width={800}
-              height={400}
-              className="w-full h-auto object-cover  mb-6 overflow-hidden rounded-2xl"
-            />
-
-            <div className="absolute top-4 right-4 text-white p-5 rounded-xl bg-[#2a5475] opacity-80">
+          <div
+            className="aspect-video overflow-hidden relative rounded-xl bg-cover bg-center"
+            style={{ backgroundImage: `url("${city.images_url}")` }}
+          >
+            <div className="absolute top-4 right-4 text-white p-5 rounded-xl bg-[#2a5475] opacity-80 w-52">
               <div className="absolute inset-0"></div>
               {city.weather && (
                 <div className="flex items-center gap-4 justify-between">
@@ -102,7 +97,23 @@ export default function CityDetailClient({ cityId }: Props) {
                 </div>
               )}
             </div>
+
+            {city.latitude && city.longitude && (
+              <div className="absolute bottom-4 right-4">
+                <div className="w-full w-52 h-40 rounded-2xl overflow-hidden">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    className="border-0 w-full h-full"
+                    loading="lazy"
+                    allowFullScreen
+                    src={`https://www.google.com/maps?q=${city.latitude},${city.longitude}&hl=es;z=14&output=embed`}
+                  ></iframe>
+                </div>
+              </div>
+            )}
           </div>
+
           <div
             className="text-gray-500 prose-custom leading-8 mt-4"
             dangerouslySetInnerHTML={{
@@ -115,14 +126,14 @@ export default function CityDetailClient({ cityId }: Props) {
               <h2 className="text-xl font-semibold mb-4 text-title-primary">
                 Tours in {city.name}
               </h2>
-              <div className="flex w-max gap-5">
+              <div className="flex gap-5 w-full">
                 {tours.map((tour) => (
                   <Link
                     href={`/tour/${tour.id}`}
                     key={`${tour.id}`}
-                    className="w-auto flex-shrink-0 "
+                    className="w-1/4"
                   >
-                    <div className="text-white w-44 h-60 bg-cover bg-center shadow-lg rounded-2xl overflow-hidden relative hover:scale-110 transition-transform duration-500 ease-in-out">
+                    <div className="text-white w-full h-72 bg-cover bg-center shadow-lg rounded-2xl overflow-hidden relative hover:scale-110 transition-transform duration-500 ease-in-out">
                       <Image
                         src={tour.thumbnail_url}
                         alt={tour.name}
@@ -132,9 +143,11 @@ export default function CityDetailClient({ cityId }: Props) {
                       ></Image>
                       <div className="absolute w-full bottom-0 bg-gradient-to-t from-[#2a5475] to-transparent pointer-events-none h-full"></div>
                       <div className={`absolute w-full bottom-0 text-left p-4`}>
-                        <div className="text-[12px] my-2">{tour.name}</div>
-                        <div className="flex items-center gap-1 text-[10px]">
-                          <span className="opacity-70">
+                        <div className="text-[12px] my-2 font-bold">
+                          {tour.name}
+                        </div>
+                        <div className="flex items-center gap-1 text-[10px] ">
+                          <span className="opacity-70 line-clamp-3">
                             {tour.map_description}
                           </span>
                         </div>

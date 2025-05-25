@@ -4,7 +4,7 @@ import Maps from "@/components/Maps";
 import Event from "@/components/Event";
 import Footer from "@/components/Footer";
 import PageDivider from "@/components/Divider";
-import Holiday from "@/components/Holiday";
+// import Holiday from "@/components/Holiday";
 import Sea from "@/components/Sea";
 
 export default function Home() {
@@ -14,8 +14,8 @@ export default function Home() {
       <Maps />
       <Gallery />
       <Sea />
-      <Holiday />
-      <PageDivider />
+      {/* <Holiday /> */}
+      {/* <PageDivider /> */}
       <Event />
       <Footer />
       <PageDivider direction="up" background="transparent" />

@@ -79,6 +79,7 @@ export async function POST(req: Request) {
       "origin": "",
       "destination": "",
       "duration": "",
+      "recommendation": "",
       "days": [
         {
           "day": 1,
@@ -135,6 +136,8 @@ export async function POST(req: Request) {
     Buatkan menjadi format json yang bisa saya gunakan untuk halaman web.
 
     Berikan jawaban dalam bahasa inggris.
+
+    Isi bagian recommendation dengan hal yang istimewa dari kota ${destinations}, misal makanan khas, tempat khas, budaya dan hal-hal unik terkait kota ${destinations}.
     
     Pastikan jawaban yang anda berikan hanya format json yang saya inginkan. jangan ada kata-kata lain yang tidak saya butuhkan.
     
