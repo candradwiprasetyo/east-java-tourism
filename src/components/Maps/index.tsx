@@ -88,7 +88,7 @@ const Maps = () => {
                       }}
                     >
                       <Image
-                        src={loc.thumbnail_url}
+                        src={loc.images_url}
                         alt={loc.name}
                         width={300}
                         height={256}

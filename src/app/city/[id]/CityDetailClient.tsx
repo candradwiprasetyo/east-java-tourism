@@ -100,7 +100,7 @@ export default function CityDetailClient({ cityId }: Props) {
 
             {city.latitude && city.longitude && (
               <div className="absolute bottom-4 right-4">
-                <div className="w-full w-52 h-40 rounded-2xl overflow-hidden">
+                <div className="w-52 h-40 rounded-2xl overflow-hidden">
                   <iframe
                     width="100%"
                     height="100%"
@@ -115,7 +115,7 @@ export default function CityDetailClient({ cityId }: Props) {
           </div>
 
           <div
-            className="text-gray-500 prose-custom leading-8 mt-4"
+            className="text-gray-500 prose-custom leading-8 mt-8"
             dangerouslySetInnerHTML={{
               __html: sanitizeDescription(city?.description),
             }}
@@ -135,7 +135,7 @@ export default function CityDetailClient({ cityId }: Props) {
                   >
                     <div className="text-white w-full h-72 bg-cover bg-center shadow-lg rounded-2xl overflow-hidden relative hover:scale-110 transition-transform duration-500 ease-in-out">
                       <Image
-                        src={tour.thumbnail_url}
+                        src={tour.images_url}
                         alt={tour.name}
                         width={300}
                         height={256}
