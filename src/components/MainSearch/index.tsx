@@ -150,15 +150,6 @@ export default function MainSearch() {
   return (
     <>
       <div className="flex items-center h-screen relative">
-        {/* <div className="absolute w-[12vw] h-[4vw] mx-auto left-0 right-0 top-0">
-          <Image
-            src="/assets/images/wonderful-indonesia.png"
-            alt="Wonderful Indonesia"
-            width={200}
-            height={100}
-            className="w-full"
-          />
-        </div> */}
         <div className="hidden">{userCity}</div>
         <div className="flex xl:max-w-[80%] container mx-auto items-center relative px-4">
           {covers.map((cover) => (
