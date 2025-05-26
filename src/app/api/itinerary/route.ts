@@ -66,9 +66,9 @@ export async function POST(req: Request) {
       paramInterests = `Carikan data pariwisata yang paling populer dan menarik wisatawan`;
     }
 
-    const message = `Tolong buatkan itinerary lengkap dengan budget liburan ke kota ${
-      destinations ? destinations : "wisata populer"
-    } di Jawa Timur, Indonesia dari ${origin} selama ${countDay} hari. ${paramInterests}. Dari mulai tanggal ${start_date} sampai tanggal ${end_date}. Data harus lengkap diawali dengan tiket pergi dan diakhiri dengan tiket pulang yang masuk kategori transportation. 
+    const message = `Tolong buatkan itinerary lengkap dengan budget liburan ke kota ${destinations} (Jawa Timur, Indonesia) dari ${origin} selama ${countDay} hari. ${paramInterests}. Dari mulai tanggal ${start_date} sampai tanggal ${end_date}. Data harus lengkap diawali dengan tiket pergi dan diakhiri dengan tiket pulang yang masuk kategori transportation. 
+
+
     Ada 5 kategori data yaitu: 
     1. transportation 
     2. accommodation 
@@ -184,7 +184,7 @@ export async function POST(req: Request) {
 
     const result = await pool.query(
       `INSERT INTO itineraries (origin, destinations, interests, start_date, end_date, itinerary_data, duration)
-         VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [
         origin,
         destinations,
